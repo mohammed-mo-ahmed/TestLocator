@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   creator: "TestLocator",
   publisher: "TestLocator",
   referrer: "origin-when-cross-origin",
+  verification: {
+    google: "VV1pEvTrOgv8Ar8KucAruCLJ7Hj5zC-mIw2_pv0",
+  },
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     type: "website",
