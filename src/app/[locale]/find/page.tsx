@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 
+import { isValidLocale } from "@/i18n/config";
 import { alternatesFor, localizedPath, siteUrl } from "@/lib/seo";
 
 import TestFinder from "@/components/find/TestFinder";
@@ -11,6 +13,8 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
+
   const t = await getTranslations({ locale, namespace: "meta" });
   const base = siteUrl();
 
