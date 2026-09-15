@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "Encuentra el centro de examen más cercano, consulta la disponibilidad de asientos y elige la mejor opción en unos clics."
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "Encontrar un centro de examen"
+  },
+  "common": {
+    "back": "Atrás",
+    "retry": "Reintentar",
+    "loading": "Cargando…",
+    "km": "km"
+  },
+  "landing": {
+    "title": "Encuentra el centro de examen más cercano",
+    "subtitle": "Localiza centros de SAT y otros exámenes a tu alrededor, comprueba la disponibilidad de asientos y elige la opción más cercana en unos clics.",
+    "cta": "Encontrar un centro de examen",
+    "secondaryCta": "Cómo funciona",
+    "stepsTitle": "Encuentra tu centro en 3 sencillos pasos",
+    "step1Title": "Elige tu examen",
+    "step1Desc": "Elige entre SAT y otros. Se añaden nuevos exámenes con regularidad.",
+    "step2Title": "Elige cómo encontrar tu centro",
+    "step2Desc": "Usa GPS, busca por ubicación o elige directamente de la lista.",
+    "step3Title": "Mira tu centro en el mapa",
+    "step3Desc": "Disponibilidad de asientos en vivo para cada fecha."
+  },
+  "tests": {
+    "title": "Elige un examen",
+    "subtitle": "Selecciona el examen para el que te preparas",
+    "selectHint": "Selecciona un examen para ver los centros cercanos",
+    "sat": {
+      "name": "SAT",
+      "desc": "Examen de evaluación para la admisión universitaria"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "Examen de evaluación para la admisión universitaria en EE. UU."
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "Certificación de dominio del inglés"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "Examen de inglés como lengua extranjera"
+    },
+    "available": "Disponible ahora",
+    "comingSoon": "Próximamente"
+  },
+  "location": {
+    "title": "¿Dónde estás?",
+    "subtitle": "Te mostraremos los centros de examen más cercanos para tu examen.",
+    "useLocation": "Usar mi ubicación",
+    "useLocationDesc": "Detecta tu posición con el GPS",
+    "enterLocation": "Ingresar una ubicación",
+    "enterLocationDesc": "Escribe una ciudad, distrito o dirección",
+    "inputLabel": "Ciudad o zona",
+    "inputPlaceholder": "p. ej. El Cairo, Egipto o Nasr City",
+    "search": "Buscar",
+    "searching": "Buscando…",
+    "locating": "Detectando tu ubicación…",
+    "gpsDenied": "Se denegó el acceso a tu ubicación. Por favor, ingresa una ubicación manualmente abajo.",
+    "gpsError": "No pudimos detectar tu ubicación. Puedes escribirla abajo.",
+    "searchError": "No pudimos encontrar esa ubicación. Revisa la ortografía e inténtalo de nuevo.",
+    "noResults": "Sin resultados para tu búsqueda."
+  },
+  "results": {
+    "title": "Centros de examen cerca de ti",
+    "subtitle": "Mostrando las opciones más cercanas para {test}",
+    "changeSelection": "Cambiar selección",
+    "mapLabel": "Vista de mapa",
+    "nearestTitle": "Centros de examen más cercanos",
+    "loadData": "Cargando centros de examen…",
+    "empty": "Aún no hay centros de examen para tu ubicación.",
+    "showing": "Mostrando {count, plural, =1 {# centro más cercano} other {# centros más cercanos}}",
+    "moreOnMap": "+{count} más en el mapa",
+    "availableBadge": "Asientos disponibles",
+    "fullBadge": "Completo",
+    "distanceAway": "a {km} km",
+    "bookNotice": "Contacta con el centro o el organizador del examen para reservar tu asiento.",
+    "legend": "Disponibilidad para tu examen seleccionado",
+    "available": "Disponible",
+    "unavailable": "No disponible",
+    "openInMaps": "Abrir en Google Maps",
+    "backToCenter": "Atrás",
+    "centersTitle": "Todos los centros"
+  },
+  "footer": {
+    "charity": "Una obra caritativa por amor a Dios — por favor inclúyannos en sus oraciones.",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "Reportar un problema",
+    "title": "¿Te resultó útil y fácil de usar el sitio?",
+    "subtitle": "Cuéntanos cualquier queja o problema técnico.",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "contact": "Medio de contacto",
+    "contactPlaceholder": "Teléfono o correo electrónico",
+    "message": "Descripción",
+    "messagePlaceholder": "Describe el problema…",
+    "submit": "Enviar",
+    "close": "Cerrar",
+    "successTitle": "¡Gracias!",
+    "successDesc": "Tu reporte ha sido recibido. Te responderemos pronto.",
+    "required": "Por favor completa todos los campos.",
+    "yes": "Sí",
+    "no": "No",
+    "thanks": "¡Gracias por tus comentarios!",
+    "formTitle": "Reportar un problema"
+  },
+  "center": {
+    "title": "Elige un centro de examen",
+    "subtitle": "Elige tu país y luego busca y selecciona el centro que quieras.",
+    "countryLabel": "País",
+    "countryPlaceholder": "Selecciona un país",
+    "centerLabel": "Centro de examen",
+    "centerPlaceholder": "Busca o selecciona un centro",
+    "searchPlaceholder": "Busca por nombre, ciudad o dirección…",
+    "selectCountryFirst": "Selecciona primero un país",
+    "confirm": "Ver en el mapa",
+    "noneFound": "Sin resultados."
+  },
+  "findMethod": {
+    "title": "¿Cómo quieres encontrar tu centro?",
+    "subtitle": "Elige la forma más cómoda.",
+    "gpsCta": "Usar mi ubicación",
+    "gpsDesc": "Encuentra centros cerca de ti con GPS",
+    "gpsError": "No pudimos detectar tu ubicación. Inténtalo de nuevo o busca abajo.",
+    "gpsDenied": "Se denegó el acceso a la ubicación. Busca abajo.",
+    "locating": "Ubicando…",
+    "searchCta": "Buscar una ubicación",
+    "searchDesc": "Escribe una ciudad, distrito o dirección",
+    "inputLabel": "Ciudad o zona",
+    "inputPlaceholder": "ej. Madrid, España o Barrio Salamanca",
+    "search": "Buscar",
+    "searching": "Buscando…",
+    "searchError": "No pudimos encontrar esa ubicación. Verifica e intenta de nuevo.",
+    "noResults": "No se encontraron resultados.",
+    "centerCta": "Elegir un centro",
+    "centerDesc": "Selecciona de la lista de todos los centros",
+    "testLabel": "Examen seleccionado: {test}"
+  }
+}

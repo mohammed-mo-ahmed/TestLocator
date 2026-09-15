@@ -1,0 +1,29 @@
+▲ Next.js 16.3.5 (Turbopack)
+✓ Running next.config.ts took 220ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.0min
+  Running TypeScript ...
+✓ Finished writing to filesystem cache in 29.5s
+  Finished TypeScript in 90s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/28) ...
+  Generating static pages using 3 workers (7/28) 
+  Generating static pages using 3 workers (14/28) 
+  Generating static pages using 3 workers (21/28) 
+Error occurred prerendering page "/admin". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Supabase not configured
+    at dz (src\lib\supabase-server.ts:8:19)
+    at dI (src\app\admin\actions.ts:14:24)
+    at f (src\app\admin\page.tsx:7:9)
+   6 | export async function createClient() {
+   7 |   const env = getSupabaseEnv();
+>  8 |   if (!env) throw new Error("Supabase not configured");
+     |                   ^
+   9 |
+  10 |   const cookieStore = await cookies();
+  11 | {
+  digest: '2691091541'
+}
+Export encountered an error on /admin/page: /admin, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null

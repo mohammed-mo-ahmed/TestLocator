@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "Trouvez le centre d'examen le plus proche, consultez la disponibilité des places et choisissez la meilleure option en quelques clics."
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "Trouver un centre d'examen"
+  },
+  "common": {
+    "back": "Retour",
+    "retry": "Réessayer",
+    "loading": "Chargement…",
+    "km": "km"
+  },
+  "landing": {
+    "title": "Trouvez le centre d'examen le plus proche",
+    "subtitle": "Localisez les centres SAT et autres autour de vous, vérifiez la disponibilité des places et choisissez le plus proche en quelques clics.",
+    "cta": "Trouver un centre d'examen",
+    "secondaryCta": "Comment ça marche",
+    "stepsTitle": "Trouvez votre centre en 3 étapes simples",
+    "step1Title": "Choisissez votre examen",
+    "step1Desc": "Choisissez entre le SAT et d'autres. De nouveaux examens sont ajoutés régulièrement.",
+    "step2Title": "Choisissez comment trouver votre centre",
+    "step2Desc": "Utilisez le GPS, cherchez par lieu ou choisissez directement dans la liste.",
+    "step3Title": "Voyez votre centre sur la carte",
+    "step3Desc": "Places disponibles en direct pour chaque date d'examen."
+  },
+  "tests": {
+    "title": "Choisissez un examen",
+    "subtitle": "Sélectionnez l'examen auquel vous vous préparez",
+    "selectHint": "Sélectionnez un examen pour voir les centres proches de vous",
+    "sat": {
+      "name": "SAT",
+      "desc": "Test d'évaluation pour l'admission à l'université"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "Test américain pour l'admission à l'université"
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "Certification de maîtrise de l'anglais"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "Test d'anglais langue étrangère"
+    },
+    "available": "Disponible maintenant",
+    "comingSoon": "Bientôt disponible"
+  },
+  "location": {
+    "title": "Où êtes-vous ?",
+    "subtitle": "Nous allons vous montrer les centres d'examen les plus proches pour votre examen.",
+    "useLocation": "Utiliser ma position",
+    "useLocationDesc": "Détectez votre position avec le GPS",
+    "enterLocation": "Saisir une localisation",
+    "enterLocationDesc": "Tapez une ville, un quartier ou une adresse",
+    "inputLabel": "Ville ou zone",
+    "inputPlaceholder": "ex. Le Caire, Égypte ou Nasr City",
+    "search": "Rechercher",
+    "searching": "Recherche…",
+    "locating": "Détection de votre position…",
+    "gpsDenied": "L'accès à votre position a été refusé. Veuillez saisir une localisation manuellement ci-dessous.",
+    "gpsError": "Impossible de détecter votre position. Vous pouvez la saisir ci-dessous.",
+    "searchError": "Localisation introuvable. Vérifiez l'orthographe et réessayez.",
+    "noResults": "Aucun résultat pour votre recherche."
+  },
+  "results": {
+    "title": "Centres d'examen près de chez vous",
+    "subtitle": "Affichage des options les plus proches pour {test}",
+    "changeSelection": "Modifier la sélection",
+    "mapLabel": "Vue carte",
+    "nearestTitle": "Centres d'examen les plus proches",
+    "loadData": "Chargement des centres d'examen…",
+    "empty": "Aucun centre d'examen trouvé pour votre localisation pour l'instant.",
+    "showing": "Affichage de {count, plural, =1 {# centre le plus proche} other {# centres les plus proches}}",
+    "moreOnMap": "+{count} de plus sur la carte",
+    "availableBadge": "Places disponibles",
+    "fullBadge": "Complet",
+    "distanceAway": "à {km} km",
+    "bookNotice": "Contactez le centre ou l'organisateur de l'examen pour réserver votre place.",
+    "legend": "Disponibilité pour votre examen sélectionné",
+    "available": "Disponible",
+    "unavailable": "Non disponible",
+    "openInMaps": "Ouvrir dans Google Maps",
+    "backToCenter": "Retour",
+    "centersTitle": "Tous les centres"
+  },
+  "footer": {
+    "charity": "Une œuvre caritative pour l'amour de Dieu — pensez à nous dans vos prières.",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "Signaler un problème",
+    "title": "Avez-vous trouvé le site utile et facile à utiliser ?",
+    "subtitle": "Dites-nous toute réclamation ou tout problème technique.",
+    "name": "Nom",
+    "namePlaceholder": "Votre nom",
+    "contact": "Moyen de contact",
+    "contactPlaceholder": "Téléphone ou e-mail",
+    "message": "Description",
+    "messagePlaceholder": "Décrivez le problème…",
+    "submit": "Envoyer",
+    "close": "Fermer",
+    "successTitle": "Merci !",
+    "successDesc": "Votre signalement a bien été reçu. Nous vous répondrons bientôt.",
+    "required": "Veuillez remplir tous les champs.",
+    "yes": "Oui",
+    "no": "Non",
+    "thanks": "Merci pour votre retour !",
+    "formTitle": "Signaler un problème"
+  },
+  "center": {
+    "title": "Choisissez un centre d'examen",
+    "subtitle": "Choisissez votre pays, puis recherchez et sélectionnez le centre souhaité.",
+    "countryLabel": "Pays",
+    "countryPlaceholder": "Sélectionnez un pays",
+    "centerLabel": "Centre d'examen",
+    "centerPlaceholder": "Recherchez ou sélectionnez un centre",
+    "searchPlaceholder": "Recherchez par nom, ville ou adresse…",
+    "selectCountryFirst": "Sélectionnez d'abord un pays",
+    "confirm": "Voir sur la carte",
+    "noneFound": "Aucun résultat."
+  },
+  "findMethod": {
+    "title": "Comment trouver votre centre ?",
+    "subtitle": "Choisissez la manière la plus simple.",
+    "gpsCta": "Utiliser ma position",
+    "gpsDesc": "Trouver les centres proches de vous par GPS",
+    "gpsError": "Impossible de détecter votre position. Réessayez ou cherchez ci-dessous.",
+    "gpsDenied": "L'accès à la localisation a été refusé. Cherchez ci-dessous.",
+    "locating": "Localisation…",
+    "searchCta": "Rechercher un lieu",
+    "searchDesc": "Tapez une ville, un quartier ou une adresse",
+    "inputLabel": "Ville ou zone",
+    "inputPlaceholder": "ex. Paris, France ou Le Marais",
+    "search": "Rechercher",
+    "searching": "Recherche…",
+    "searchError": "Lieu introuvable. Vérifiez et réessayez.",
+    "noResults": "Aucun résultat.",
+    "centerCta": "Choisir un centre",
+    "centerDesc": "Choisir dans la liste de tous les centres",
+    "testLabel": "Examen sélectionné : {test}"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "가장 가까운 시험장을 찾고 좌석 가능 여부를 확인한 뒤 몇 번의 클릭으로 최적의 선택을 하세요."
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "시험장 찾기"
+  },
+  "common": {
+    "back": "뒤로",
+    "retry": "다시 시도",
+    "loading": "불러오는 중…",
+    "km": "km"
+  },
+  "landing": {
+    "title": "가장 가까운 시험장 찾기",
+    "subtitle": "주변의 SAT 및 기타 시험장을 찾고, 원하는 날짜의 좌석 여부를 확인한 후 몇 번의 클릭으로 가장 가까운 곳을 선택하세요.",
+    "cta": "시험장 찾기",
+    "secondaryCta": "사용 방법",
+    "stepsTitle": "3단계로 시험장 찾기",
+    "step1Title": "시험 선택",
+    "step1Desc": "SAT 등에서 선택하세요. 새로운 시험은 정기적으로 추가됩니다.",
+    "step2Title": "시험장을 찾는 방법 선택",
+    "step2Desc": "GPS, 위치 검색 또는 목록에서 직접 선택하세요.",
+    "step3Title": "지도에서 시험장 확인",
+    "step3Desc": "각 시험일의 좌석 여부를 실시간으로 확인."
+  },
+  "tests": {
+    "title": "시험 선택",
+    "subtitle": "준비 중인 시험을 선택하세요",
+    "selectHint": "시험을 선택하면 가까운 시험장이 표시됩니다",
+    "sat": {
+      "name": "SAT",
+      "desc": "대학 입학 학업 평가 시험"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "미국 대학 입학 시험"
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "영어 능력 인증 시험"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "외국어로서의 영어 시험"
+    },
+    "available": "현재 이용 가능",
+    "comingSoon": "출시 예정"
+  },
+  "location": {
+    "title": "어디에 계신가요?",
+    "subtitle": "선택한 시험에 가장 가까운 시험장을 보여드립니다.",
+    "useLocation": "내 위치 사용",
+    "useLocationDesc": "GPS로 현재 위치 감지",
+    "enterLocation": "위치 입력",
+    "enterLocationDesc": "도시, 지역 또는 주소 입력",
+    "inputLabel": "도시 또는 지역",
+    "inputPlaceholder": "예: 이집트 카이로 또는 나스르시티",
+    "search": "검색",
+    "searching": "검색 중…",
+    "locating": "현재 위치 감지 중…",
+    "gpsDenied": "위치 접근이 거부되었습니다. 아래에서 위치를 직접 입력해 주세요.",
+    "gpsError": "현재 위치를 감지할 수 없습니다. 대신 아래에서 입력할 수 있습니다.",
+    "searchError": "해당 위치를 찾을 수 없습니다. 철자를 확인하고 다시 시도하세요.",
+    "noResults": "검색 결과가 없습니다."
+  },
+  "results": {
+    "title": "내 주변 시험장",
+    "subtitle": "{test}에 가장 가까운 옵션을 표시 중입니다",
+    "changeSelection": "선택 변경",
+    "mapLabel": "지도 보기",
+    "nearestTitle": "가장 가까운 시험장",
+    "loadData": "시험장을 불러오는 중…",
+    "empty": "현재 위치 주변에 시험장이 아직 없습니다.",
+    "showing": "가장 가까운 {count, plural, =1 {센터 #개} other {센터 #개}} 표시 중",
+    "moreOnMap": "지도에 +{count}개 더",
+    "availableBadge": "좌석 가능",
+    "fullBadge": "만석",
+    "distanceAway": "{km} km 거리",
+    "bookNotice": "좌석 예약은 시험장 또는 주최 측에 문의하세요.",
+    "legend": "선택한 시험의 좌석 현황",
+    "available": "가능",
+    "unavailable": "불가능",
+    "openInMaps": "Google 지도에서 열기",
+    "backToCenter": "뒤로",
+    "centersTitle": "전체 시험장"
+  },
+  "footer": {
+    "charity": "하나님을 위한 자선 활동입니다. 여러분의 기도 부탁드립니다.",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "문제 신고",
+    "title": "사이트가 유용하고 사용하기 쉬웠나요?",
+    "subtitle": "불만 또는 기술적 문제를 알려주세요.",
+    "name": "이름",
+    "namePlaceholder": "이름",
+    "contact": "연락처",
+    "contactPlaceholder": "전화번호 또는 이메일",
+    "message": "설명",
+    "messagePlaceholder": "문제에 대해 자세히 설명해주세요…",
+    "submit": "보내기",
+    "close": "닫기",
+    "successTitle": "감사합니다!",
+    "successDesc": "신고가 접수되었습니다. 곧 연락드리겠습니다.",
+    "required": "모든 필드를 입력해주세요.",
+    "yes": "예",
+    "no": "아니요",
+    "thanks": "의견 주셔서 감사합니다!",
+    "formTitle": "문제 신고"
+  },
+  "center": {
+    "title": "시험장 선택",
+    "subtitle": "국가를 선택한 다음 원하는 시험장을 검색하고 선택하세요.",
+    "countryLabel": "국가",
+    "countryPlaceholder": "국가 선택",
+    "centerLabel": "시험장",
+    "centerPlaceholder": "검색 또는 선택",
+    "searchPlaceholder": "이름, 도시 또는 주소로 검색…",
+    "selectCountryFirst": "먼저 국가를 선택하세요",
+    "confirm": "지도에서 보기",
+    "noneFound": "일치하는 결과가 없습니다."
+  },
+  "findMethod": {
+    "title": "시험장을 어떻게 찾으시겠어요?",
+    "subtitle": "가장 편한 방법을 선택하세요.",
+    "gpsCta": "위치 사용",
+    "gpsDesc": "GPS로 주변 시험장 찾기",
+    "gpsError": "위치를 감지하지 못했습니다. 다시 시도하거나 아래에서 검색하세요.",
+    "gpsDenied": "위치 접근이 거부되었습니다. 아래에서 검색하세요.",
+    "locating": "위치 확인 중…",
+    "searchCta": "위치 검색",
+    "searchDesc": "도시, 지역 또는 주소 입력",
+    "inputLabel": "도시 또는 지역",
+    "inputPlaceholder": "예: 서울, 강남구",
+    "search": "검색",
+    "searching": "검색 중…",
+    "searchError": "위치를 찾을 수 없습니다. 확인 후 다시 시도하세요.",
+    "noResults": "결과가 없습니다.",
+    "centerCta": "시험장 선택",
+    "centerDesc": "전체 목록에서 선택",
+    "testLabel": "선택한 시험: {test}"
+  }
+}

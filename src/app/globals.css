@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-plex-sans-arabic), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Noto Sans", "Noto Sans Arabic", "Noto Sans CJK SC", "Noto Sans JP",
+    "Noto Sans KR", "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* ---------- Language switch ---------- */
+select.locale-switcher {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  padding-right: 2rem;
+}
+
+/* ---------- Leaflet map ---------- */
+.map-shell .leaflet-container {
+  font-family: var(--font-sans);
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 1rem;
+  box-shadow: 0 12px 28px -8px rgb(51 65 85 / 0.35);
+  padding: 0;
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  min-width: 220px;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.leaflet-tile-pane {
+  filter: saturate(0.85);
+}
+
+/* ---------- Custom map pin ---------- */
+.tc-pin {
+  background: transparent;
+  border: none;
+  filter: drop-shadow(0 3px 4px rgb(15 23 42 / 0.35));
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+
+.tc-pin:hover {
+  transform: scale(1.08);
+}
+
+.tc-pin--selected {
+  transform: scale(1.18);
+  z-index: 1000;
+}
+
+.tc-pin--selected:hover {
+  transform: scale(1.24);
+}
+
+/* ---------- Misc ---------- */
+.tc-card-shadow {
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.08), 0 10px 30px -12px rgb(15 23 42 / 0.12);
+}
+
+.tc-gradient-text {
+  background: linear-gradient(120deg, #4f46e5, #7c3aed 55%, #0ea5e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tc-map-marker-available {
+  color: #4f46e5;
+}
+
+.tc-map-marker-full {
+  color: #f43f5e;
+}
+
+@keyframes tc-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(79 70 229 / 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgb(79 70 229 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(79 70 229 / 0);
+  }
+}
+
+.tc-pulse {
+  animation: tc-pulse-ring 2.4s cubic-bezier(0.66, 0, 0.33, 1) infinite;
+}

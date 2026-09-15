@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "最寄りのテストセンターを見つけ、座席の空き状況を確認し、数クリックで最適な選択肢を選ぶことができます。"
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "テストセンターを探す"
+  },
+  "common": {
+    "back": "戻る",
+    "retry": "再試行",
+    "loading": "読み込み中…",
+    "km": "km"
+  },
+  "landing": {
+    "title": "最寄りのテストセンターを見つける",
+    "subtitle": "周辺のSATなどのテストセンターを確認し、希望日時の座席の空き状況を調べて、数クリックで最寄りの会場を選べます。",
+    "cta": "テストセンターを探す",
+    "secondaryCta": "使い方",
+    "stepsTitle": "3つの簡単なステップでテストセンターを見つける",
+    "step1Title": "テストを選ぶ",
+    "step1Desc": "SATなどから選択。新しいテストは随時追加されます。",
+    "step2Title": "会場の見つけ方を選ぶ",
+    "step2Desc": "GPS、場所の検索、またはリストから直接選択できます。",
+    "step3Title": "地図で会場を確認",
+    "step3Desc": "各試験日の空き状況をリアルタイムで表示。"
+  },
+  "tests": {
+    "title": "テストを選択",
+    "subtitle": "受験予定の試験を選択してください",
+    "selectHint": "試験を選択すると、お近くのテストセンターが表示されます",
+    "sat": {
+      "name": "SAT",
+      "desc": "大学進学のためのアセスメントテスト"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "米国の大学進学テスト"
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "英語力の証明資格"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "外国語としての英語のテスト"
+    },
+    "available": "利用可能",
+    "comingSoon": "近日公開"
+  },
+  "location": {
+    "title": "現在地はどこですか？",
+    "subtitle": "選択したテストに最寄りのテストセンターを表示します。",
+    "useLocation": "現在地を使用",
+    "useLocationDesc": "GPS で位置を特定",
+    "enterLocation": "場所を入力",
+    "enterLocationDesc": "都市、地区、住所を入力",
+    "inputLabel": "都市または地域",
+    "inputPlaceholder": "例：カイロ（エジプト）やナーセルシティ",
+    "search": "検索",
+    "searching": "検索中…",
+    "locating": "位置を特定中…",
+    "gpsDenied": "位置情報へのアクセスが拒否されました。下に手動で場所を入力してください。",
+    "gpsError": "位置を特定できませんでした。代わりに下に入力してください。",
+    "searchError": "場所が見つかりませんでした。スペルを確認して再試行してください。",
+    "noResults": "検索結果が見つかりません。"
+  },
+  "results": {
+    "title": "お近くのテストセンター",
+    "subtitle": "{test} に最寄りの選択肢を表示しています",
+    "changeSelection": "選択を変更",
+    "mapLabel": "地図表示",
+    "nearestTitle": "最寄りのテストセンター",
+    "loadData": "テストセンターを読み込み中…",
+    "empty": "お近くにテストセンターが見つかりませんでした。",
+    "showing": "最寄り {count, plural, =1 {# 件} other {# 件}} を表示中",
+    "moreOnMap": "地図上にさらに +{count} 件",
+    "availableBadge": "座席あり",
+    "fullBadge": "満席",
+    "distanceAway": "{km} km 先",
+    "bookNotice": "座席の予約はセンターまたは主催者にご連絡ください。",
+    "legend": "選択したテストの座席状況",
+    "available": "空きあり",
+    "unavailable": "空きなし",
+    "openInMaps": "Google マップで開く",
+    "backToCenter": "戻る",
+    "centersTitle": "すべての会場"
+  },
+  "footer": {
+    "charity": "神のための慈善活動です。皆様のお祈りをお願いします。",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "問題を報告",
+    "title": "このサイトは役に立ち、使いやすいと思いましたか？",
+    "subtitle": "苦情や技術的な問題をお知らせください。",
+    "name": "名前",
+    "namePlaceholder": "お名前",
+    "contact": "連絡先",
+    "contactPlaceholder": "電話番号またはメール",
+    "message": "説明",
+    "messagePlaceholder": "問題の内容をご記入ください…",
+    "submit": "送信",
+    "close": "閉じる",
+    "successTitle": "ありがとうございます！",
+    "successDesc": "報告を受け付けました。追ってご連絡します。",
+    "required": "すべての項目を入力してください。",
+    "yes": "はい",
+    "no": "いいえ",
+    "thanks": "ご意見ありがとうございます！",
+    "formTitle": "問題を報告"
+  },
+  "center": {
+    "title": "試験会場を選択",
+    "subtitle": "国を選んでから、希望の試験会場を検索して選んでください。",
+    "countryLabel": "国",
+    "countryPlaceholder": "国を選択",
+    "centerLabel": "試験会場",
+    "centerPlaceholder": "検索または選択",
+    "searchPlaceholder": "名前・都市・住所で検索…",
+    "selectCountryFirst": "先に国を選択してください",
+    "confirm": "地図で表示",
+    "noneFound": "一致する結果がありません。"
+  },
+  "findMethod": {
+    "title": "会場の探し方は？",
+    "subtitle": "お好きな方法をお選びください。",
+    "gpsCta": "現在地を使用",
+    "gpsDesc": "GPS で近くの会場を検索",
+    "gpsError": "現在地を取得できませんでした。再試行するか、下で検索してください。",
+    "gpsDenied": "位置情報の使用が許可されていません。下で検索してください。",
+    "locating": "位置取得中…",
+    "searchCta": "場所を検索",
+    "searchDesc": "都市・地区・住所を入力",
+    "inputLabel": "都市またはエリア",
+    "inputPlaceholder": "例：東京、渋谷区",
+    "search": "検索",
+    "searching": "検索中…",
+    "searchError": "場所が見つかりませんでした。確認して再試行してください。",
+    "noResults": "結果がありません。",
+    "centerCta": "会場を選択",
+    "centerDesc": "会場リストから選ぶ",
+    "testLabel": "選択した試験：{test}"
+  }
+}

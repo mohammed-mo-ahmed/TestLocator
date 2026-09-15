@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "Find the nearest test center around you, see live seat availability and pick the closest match in a few clicks."
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "Find a Test Center"
+  },
+  "common": {
+    "back": "Back",
+    "retry": "Try again",
+    "loading": "Loading…",
+    "km": "km"
+  },
+  "landing": {
+    "title": "Find the nearest test center",
+    "subtitle": "Locate SAT and other test centers around you, check seat availability for your preferred date and choose the closest match in a few clicks.",
+    "cta": "Find a Test Center",
+    "secondaryCta": "How it works",
+    "stepsTitle": "Find your test center in 3 simple steps",
+    "step1Title": "Pick your test",
+    "step1Desc": "Choose from SAT and more. New tests are added regularly.",
+    "step2Title": "Choose how to find your center",
+    "step2Desc": "Use GPS, search by location, or pick directly from the list.",
+    "step3Title": "See your center on the map",
+    "step3Desc": "Live seat availability for every test date."
+  },
+  "tests": {
+    "title": "Choose a test",
+    "subtitle": "Pick the exam you are preparing for",
+    "selectHint": "Select an exam to see the test centers near you",
+    "sat": {
+      "name": "SAT",
+      "desc": "Scholastic Assessment Test for college admission"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "American College Testing for college admission"
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "English language proficiency certification"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "Test of English as a Foreign Language"
+    },
+    "available": "Available now",
+    "comingSoon": "Coming soon"
+  },
+  "location": {
+    "title": "Where are you?",
+    "subtitle": "We will show you the closest test centers for your test.",
+    "useLocation": "Use my location",
+    "useLocationDesc": "Detect your position with GPS",
+    "enterLocation": "Enter a location",
+    "enterLocationDesc": "Type a city, district or address",
+    "inputLabel": "City or area",
+    "inputPlaceholder": "e.g. Cairo, Egypt or Nasr City",
+    "search": "Search",
+    "searching": "Searching…",
+    "locating": "Detecting your location…",
+    "gpsDenied": "Location access was denied. Please enter a location manually below.",
+    "gpsError": "We could not detect your location. You can type it below instead.",
+    "searchError": "We could not find that location. Please check the spelling and try again.",
+    "noResults": "No results found for your search."
+  },
+  "results": {
+    "title": "Test centers near you",
+    "subtitle": "Showing the closest options for {test}",
+    "changeSelection": "Change selection",
+    "mapLabel": "Map view",
+    "nearestTitle": "Nearest test centers",
+    "loadData": "Loading test centers…",
+    "empty": "No test centers found for your location yet.",
+    "showing": "Showing {count, plural, =1 {# nearest center} other {# nearest centers}}",
+    "moreOnMap": "+{count} more on the map",
+    "availableBadge": "Seats available",
+    "fullBadge": "Full",
+    "distanceAway": "{km} km away",
+    "bookNotice": "Contact the center or the test organizer to reserve your seat.",
+    "legend": "Availability for your selected test",
+    "available": "Available",
+    "unavailable": "Not available",
+    "openInMaps": "Open in Google Maps",
+    "backToCenter": "Back",
+    "centersTitle": "All test centers"
+  },
+  "footer": {
+    "charity": "A charitable work for the sake of God — please keep us in your prayers.",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "Report a problem",
+    "title": "Did you find the site useful and easy to use?",
+    "subtitle": "Tell us about any complaint or technical issue you ran into.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "contact": "Contact method",
+    "contactPlaceholder": "Phone or email",
+    "message": "Description",
+    "messagePlaceholder": "Describe the issue you faced…",
+    "submit": "Send",
+    "close": "Close",
+    "successTitle": "Thanks!",
+    "successDesc": "Your report has been received. We will get back to you soon.",
+    "required": "Please fill in all the fields.",
+    "yes": "Yes",
+    "no": "No",
+    "thanks": "Thank you for your feedback!",
+    "formTitle": "Report a problem"
+  },
+  "center": {
+    "title": "Choose a test center",
+    "subtitle": "Pick your country, then search for and select the test center you want.",
+    "countryLabel": "Country",
+    "countryPlaceholder": "Select a country",
+    "centerLabel": "Test center",
+    "centerPlaceholder": "Search or select a test center",
+    "searchPlaceholder": "Search by name, city or address…",
+    "selectCountryFirst": "Select a country first",
+    "confirm": "Show on map",
+    "noneFound": "No matching results."
+  },
+  "findMethod": {
+    "title": "How would you like to find your center?",
+    "subtitle": "Choose the most convenient way for you.",
+    "gpsCta": "Use my location",
+    "gpsDesc": "Find centers near you with GPS",
+    "gpsError": "We could not detect your location. Please try again or search below.",
+    "gpsDenied": "Location access was denied. Please search below.",
+    "locating": "Locating…",
+    "searchCta": "Search for a location",
+    "searchDesc": "Type a city, district or address",
+    "inputLabel": "City or area",
+    "inputPlaceholder": "e.g. Cairo, Egypt or Nasr City",
+    "search": "Search",
+    "searching": "Searching…",
+    "searchError": "We could not find that location. Please check and try again.",
+    "noResults": "No results found.",
+    "centerCta": "Choose a test center",
+    "centerDesc": "Pick from the list of all centers",
+    "testLabel": "Test selected: {test}"
+  }
+}

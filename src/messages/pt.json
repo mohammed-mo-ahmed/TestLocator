@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "Encontre o centro de testes mais próximo, veja a disponibilidade de vagas e escolha a melhor opção em poucos cliques."
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "Encontrar um centro de testes"
+  },
+  "common": {
+    "back": "Voltar",
+    "retry": "Tentar novamente",
+    "loading": "Carregando…",
+    "km": "km"
+  },
+  "landing": {
+    "title": "Encontre o centro de testes mais próximo",
+    "subtitle": "Localize centros de SAT e outros ao seu redor, verifique a disponibilidade de vagas e escolha a opção mais próxima em poucos cliques.",
+    "cta": "Encontrar um centro de testes",
+    "secondaryCta": "Como funciona",
+    "stepsTitle": "Encontre seu centro em 3 passos simples",
+    "step1Title": "Escolha sua prova",
+    "step1Desc": "Escolha entre SAT e outros. Novas provas são adicionadas regularmente.",
+    "step2Title": "Escolha como encontrar o seu centro",
+    "step2Desc": "Use GPS, pesquise por localização ou escolha diretamente na lista.",
+    "step3Title": "Veja o seu centro no mapa",
+    "step3Desc": "Vagas disponíveis ao vivo para cada data."
+  },
+  "tests": {
+    "title": "Escolha uma prova",
+    "subtitle": "Selecione o exame para o qual você está se preparando",
+    "selectHint": "Selecione um exame para ver os centros perto de você",
+    "sat": {
+      "name": "SAT",
+      "desc": "Teste de avaliação para admissão na faculdade"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "Prova americana para admissão na faculdade"
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "Certificação de proficiência em inglês"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "Teste de inglês como língua estrangeira"
+    },
+    "available": "Disponível agora",
+    "comingSoon": "Em breve"
+  },
+  "location": {
+    "title": "Onde você está?",
+    "subtitle": "Mostraremos os centros de testes mais próximos para a sua prova.",
+    "useLocation": "Usar minha localização",
+    "useLocationDesc": "Detecte sua posição com o GPS",
+    "enterLocation": "Inserir uma localização",
+    "enterLocationDesc": "Digite uma cidade, bairro ou endereço",
+    "inputLabel": "Cidade ou região",
+    "inputPlaceholder": "ex.: Cairo, Egito ou Nasr City",
+    "search": "Buscar",
+    "searching": "Buscando…",
+    "locating": "Detectando sua localização…",
+    "gpsDenied": "O acesso à localização foi negado. Insira uma localização manualmente abaixo.",
+    "gpsError": "Não foi possível detectar sua localização. Você pode digitá-la abaixo.",
+    "searchError": "Não encontramos essa localização. Verifique a ortografia e tente novamente.",
+    "noResults": "Nenhum resultado para sua busca."
+  },
+  "results": {
+    "title": "Centros de testes perto de você",
+    "subtitle": "Mostrando as opções mais próximas para {test}",
+    "changeSelection": "Alterar seleção",
+    "mapLabel": "Visualização de mapa",
+    "nearestTitle": "Centros de testes mais próximos",
+    "loadData": "Carregando centros de testes…",
+    "empty": "Nenhum centro de testes encontrado para sua localização ainda.",
+    "showing": "Mostrando {count, plural, =1 {o centro mais próximo} other {os # centros mais próximos}}",
+    "moreOnMap": "+{count} a mais no mapa",
+    "availableBadge": "Vagas disponíveis",
+    "fullBadge": "Lotado",
+    "distanceAway": "a {km} km",
+    "bookNotice": "Entre em contato com o centro ou com o organizador da prova para reservar sua vaga.",
+    "legend": "Disponibilidade para a sua prova selecionada",
+    "available": "Disponível",
+    "unavailable": "Indisponível",
+    "openInMaps": "Abrir no Google Maps",
+    "backToCenter": "Voltar",
+    "centersTitle": "Todos os centros"
+  },
+  "footer": {
+    "charity": "Uma obra caritativa por amor a Deus — lembrem-se de nós em suas orações.",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "Relatar um problema",
+    "title": "Você achou o site útil e fácil de usar?",
+    "subtitle": "Conte-nos sobre qualquer reclamação ou problema técnico.",
+    "name": "Nome",
+    "namePlaceholder": "Seu nome",
+    "contact": "Meio de contato",
+    "contactPlaceholder": "Telefone ou e-mail",
+    "message": "Descrição",
+    "messagePlaceholder": "Descreva o problema…",
+    "submit": "Enviar",
+    "close": "Fechar",
+    "successTitle": "Obrigado!",
+    "successDesc": "Seu relato foi recebido. Responderemos em breve.",
+    "required": "Preencha todos os campos.",
+    "yes": "Sim",
+    "no": "Não",
+    "thanks": "Obrigado pelo seu feedback!",
+    "formTitle": "Relatar um problema"
+  },
+  "center": {
+    "title": "Escolha um centro de exames",
+    "subtitle": "Escolha o seu país e depois pesquise e selecione o centro desejado.",
+    "countryLabel": "País",
+    "countryPlaceholder": "Selecione um país",
+    "centerLabel": "Centro de exames",
+    "centerPlaceholder": "Pesquise ou selecione um centro",
+    "searchPlaceholder": "Pesquise por nome, cidade ou endereço…",
+    "selectCountryFirst": "Selecione primeiro um país",
+    "confirm": "Ver no mapa",
+    "noneFound": "Sem resultados."
+  },
+  "findMethod": {
+    "title": "Como deseja encontrar o seu centro?",
+    "subtitle": "Escolha a forma mais prática.",
+    "gpsCta": "Usar minha localização",
+    "gpsDesc": "Encontre centros perto de você por GPS",
+    "gpsError": "Não foi possível detectar sua localização. Tente novamente ou pesquise abaixo.",
+    "gpsDenied": "O acesso à localização foi negado. Pesquise abaixo.",
+    "locating": "Localizando…",
+    "searchCta": "Pesquisar um local",
+    "searchDesc": "Digite uma cidade, bairro ou endereço",
+    "inputLabel": "Cidade ou bairro",
+    "inputPlaceholder": "ex. São Paulo, Brasil ou Moema",
+    "search": "Pesquisar",
+    "searching": "Pesquisando…",
+    "searchError": "Local não encontrado. Verifique e tente novamente.",
+    "noResults": "Sem resultados.",
+    "centerCta": "Escolher um centro",
+    "centerDesc": "Selecionar da lista de todos os centros",
+    "testLabel": "Exame selecionado: {test}"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "Finden Sie das nächste Testzentrum, sehen Sie die Platzverfügbarkeit und wählen Sie in wenigen Klicks die beste Option aus."
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "Testzentrum finden"
+  },
+  "common": {
+    "back": "Zurück",
+    "retry": "Erneut versuchen",
+    "loading": "Wird geladen…",
+    "km": "km"
+  },
+  "landing": {
+    "title": "Finden Sie das nächste Testzentrum",
+    "subtitle": "Finden Sie SAT- und andere Testzentren in Ihrer Nähe, prüfen Sie die Platzverfügbarkeit und wählen Sie die nächstgelegene Option in wenigen Klicks.",
+    "cta": "Testzentrum finden",
+    "secondaryCta": "So funktioniert's",
+    "stepsTitle": "Finden Sie Ihr Zentrum in 3 einfachen Schritten",
+    "step1Title": "Test auswählen",
+    "step1Desc": "Wählen Sie zwischen SAT und weiteren. Neue Tests werden regelmäßig ergänzt.",
+    "step2Title": "Wählen Sie, wie Sie Ihr Zentrum finden",
+    "step2Desc": "Nutzen Sie GPS, suchen Sie nach Standort oder wählen Sie direkt aus der Liste.",
+    "step3Title": "Ihr Zentrum auf der Karte sehen",
+    "step3Desc": "Live-Verfügbarkeit für jeden Prüfungstermin."
+  },
+  "tests": {
+    "title": "Test auswählen",
+    "subtitle": "Wählen Sie die Prüfung, für die Sie sich vorbereiten",
+    "selectHint": "Wählen Sie eine Prüfung, um die Zentren in Ihrer Nähe zu sehen",
+    "sat": {
+      "name": "SAT",
+      "desc": "Zulassungstest für das College"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "US-Zulassungstest für das College"
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "Zertifikat für Englischkenntnisse"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "Test für Englisch als Fremdsprache"
+    },
+    "available": "Jetzt verfügbar",
+    "comingSoon": "Bald verfügbar"
+  },
+  "location": {
+    "title": "Wo sind Sie?",
+    "subtitle": "Wir zeigen Ihnen die nächstgelegenen Testzentren für Ihre Prüfung.",
+    "useLocation": "Meinen Standort verwenden",
+    "useLocationDesc": "Position per GPS ermitteln",
+    "enterLocation": "Ort eingeben",
+    "enterLocationDesc": "Stadt, Bezirk oder Adresse eingeben",
+    "inputLabel": "Stadt oder Gegend",
+    "inputPlaceholder": "z. B. Kairo, Ägypten oder Nasr City",
+    "search": "Suchen",
+    "searching": "Suche…",
+    "locating": "Standort wird ermittelt…",
+    "gpsDenied": "Der Zugriff auf den Standort wurde verweigert. Bitte geben Sie unten manuell einen Ort ein.",
+    "gpsError": "Ihr Standort konnte nicht ermittelt werden. Sie können ihn stattdessen unten eingeben.",
+    "searchError": "Dieser Ort wurde nicht gefunden. Bitte prüfen Sie die Schreibweise und versuchen Sie es erneut.",
+    "noResults": "Keine Ergebnisse für Ihre Suche."
+  },
+  "results": {
+    "title": "Testzentren in Ihrer Nähe",
+    "subtitle": "Die nächstgelegenen Optionen für {test}",
+    "changeSelection": "Auswahl ändern",
+    "mapLabel": "Kartenansicht",
+    "nearestTitle": "Nächstgelegene Testzentren",
+    "loadData": "Testzentren werden geladen…",
+    "empty": "Für Ihren Standort wurden noch keine Testzentren gefunden.",
+    "showing": "{count, plural, =1 {# nächstgelegenes Zentrum} other {# nächstgelegene Zentren}} werden angezeigt",
+    "moreOnMap": "+{count} weitere auf der Karte",
+    "availableBadge": "Plätze verfügbar",
+    "fullBadge": "Voll",
+    "distanceAway": "{km} km entfernt",
+    "bookNotice": "Kontaktieren Sie das Zentrum oder den Prüfungsveranstalter, um Ihren Platz zu reservieren.",
+    "legend": "Verfügbarkeit für Ihren ausgewählten Test",
+    "available": "Verfügbar",
+    "unavailable": "Nicht verfügbar",
+    "openInMaps": "In Google Maps öffnen",
+    "backToCenter": "Zurück",
+    "centersTitle": "Alle Zentren"
+  },
+  "footer": {
+    "charity": "Ein wohltätiges Werk aus Liebe zu Gott — bitte denkt an uns in euren Gebeten.",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "Problem melden",
+    "title": "Fanden Sie die Seite nützlich und einfach zu bedienen?",
+    "subtitle": "Teilen Sie uns Beschwerden oder technische Probleme mit.",
+    "name": "Name",
+    "namePlaceholder": "Ihr Name",
+    "contact": "Kontaktweg",
+    "contactPlaceholder": "Telefon oder E-Mail",
+    "message": "Beschreibung",
+    "messagePlaceholder": "Beschreiben Sie das Problem…",
+    "submit": "Senden",
+    "close": "Schließen",
+    "successTitle": "Danke!",
+    "successDesc": "Ihr Bericht ist eingegangen. Wir melden uns bald.",
+    "required": "Bitte füllen Sie alle Felder aus.",
+    "yes": "Ja",
+    "no": "Nein",
+    "thanks": "Danke für Ihr Feedback!",
+    "formTitle": "Problem melden"
+  },
+  "center": {
+    "title": "Prüfungszentrum wählen",
+    "subtitle": "Wählen Sie Ihr Land und suchen und wählen Sie dann das gewünschte Zentrum.",
+    "countryLabel": "Land",
+    "countryPlaceholder": "Land auswählen",
+    "centerLabel": "Prüfungszentrum",
+    "centerPlaceholder": "Zentrum suchen oder auswählen",
+    "searchPlaceholder": "Nach Name, Stadt oder Adresse suchen…",
+    "selectCountryFirst": "Zuerst ein Land auswählen",
+    "confirm": "Auf Karte anzeigen",
+    "noneFound": "Keine Ergebnisse."
+  },
+  "findMethod": {
+    "title": "Wie möchten Sie Ihr Zentrum finden?",
+    "subtitle": "Wählen Sie den bequemsten Weg.",
+    "gpsCta": "Meinen Standort nutzen",
+    "gpsDesc": "Zentren in Ihrer Nähe per GPS finden",
+    "gpsError": "Ihr Standort konnte nicht ermittelt werden. Bitte versuchen Sie es erneut.",
+    "gpsDenied": "Der Standortzugriff wurde verweigert. Bitte suchen Sie unten.",
+    "locating": "Wird ermittelt…",
+    "searchCta": "Einen Standort suchen",
+    "searchDesc": "Stadt, Bezirk oder Adresse eingeben",
+    "inputLabel": "Stadt oder Bezirk",
+    "inputPlaceholder": "z.B. Berlin oder Charlottenburg",
+    "search": "Suchen",
+    "searching": "Suche…",
+    "searchError": "Standort nicht gefunden. Bitte prüfen Sie die Eingabe.",
+    "noResults": "Keine Ergebnisse.",
+    "centerCta": "Zentrum auswählen",
+    "centerDesc": "Wählen Sie aus der Liste aller Zentren",
+    "testLabel": "Ausgewählte Prüfung: {test}"
+  }
+}

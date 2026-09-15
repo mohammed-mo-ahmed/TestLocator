@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "TestLocator",
+    "description": "查找您附近最近的考试中心，查看座位可用情况，轻松点几下即可选出最合适的选择。"
+  },
+  "header": {
+    "brand": "TestLocator",
+    "navFind": "查找考试中心"
+  },
+  "common": {
+    "back": "返回",
+    "retry": "重试",
+    "loading": "加载中…",
+    "km": "公里"
+  },
+  "landing": {
+    "title": "查找最近的考试中心",
+    "subtitle": "查找您周围的 SAT 及其他考试中心，查看所选日期的座位情况，几秒钟内选出最近的选择。",
+    "cta": "查找考试中心",
+    "secondaryCta": "使用说明",
+    "stepsTitle": "三步找到您的考试中心",
+    "step1Title": "选择考试",
+    "step1Desc": "从 SAT 等考试中选择，新考试会定期添加。",
+    "step2Title": "选择如何找到您的中心",
+    "step2Desc": "使用 GPS、搜索位置或直接从列表中选择。",
+    "step3Title": "在地图上查看您的中心",
+    "step3Desc": "每个考试日期的实时名额。"
+  },
+  "tests": {
+    "title": "选择考试",
+    "subtitle": "选择您正在准备的考试",
+    "selectHint": "选择考试以查看您附近的考试中心",
+    "sat": {
+      "name": "SAT",
+      "desc": "大学入学学术评估考试"
+    },
+    "act": {
+      "name": "ACT",
+      "desc": "美国大学入学考试"
+    },
+    "ielts": {
+      "name": "IELTS",
+      "desc": "英语语言能力认证"
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "desc": "作为外语的英语考试"
+    },
+    "available": "现已开放",
+    "comingSoon": "即将推出"
+  },
+  "location": {
+    "title": "您在哪里？",
+    "subtitle": "我们将为您显示所选考试最近的考试中心。",
+    "useLocation": "使用我的位置",
+    "useLocationDesc": "通过 GPS 检测您的位置",
+    "enterLocation": "输入位置",
+    "enterLocationDesc": "输入城市、地区或地址",
+    "inputLabel": "城市或区域",
+    "inputPlaceholder": "例如：埃及开罗或纳赛尔城",
+    "search": "搜索",
+    "searching": "搜索中…",
+    "locating": "正在检测您的位置…",
+    "gpsDenied": "位置访问被拒绝。请在下方手动输入位置。",
+    "gpsError": "无法检测到您的位置。您可以在下方输入。",
+    "searchError": "找不到该位置。请检查拼写后重试。",
+    "noResults": "没有找到搜索结果。"
+  },
+  "results": {
+    "title": "您附近的考试中心",
+    "subtitle": "显示 {test} 最近的选择",
+    "changeSelection": "更改选择",
+    "mapLabel": "地图视图",
+    "nearestTitle": "最近的考试中心",
+    "loadData": "正在加载考试中心…",
+    "empty": "尚未找到您所在位置的考试中心。",
+    "showing": "显示 {count, plural, =1 {# 个最近的中心} other {# 个最近的中心}}",
+    "moreOnMap": "地图上还有 +{count} 个",
+    "availableBadge": "有余位",
+    "fullBadge": "已满",
+    "distanceAway": "距此 {km} 公里",
+    "bookNotice": "请联系考试中心或考试主办方预订座位。",
+    "legend": "所选考试的上座情况",
+    "available": "可预订",
+    "unavailable": "不可预订",
+    "openInMaps": "在谷歌地图中打开",
+    "backToCenter": "返回",
+    "centersTitle": "所有考试中心"
+  },
+  "footer": {
+    "charity": "为神所做的慈善之举，恳请您为我们祈祷。",
+    "name": "Mohammed"
+  },
+  "feedback": {
+    "button": "报告问题",
+    "title": "您觉得这个网站有用且易于使用吗？",
+    "subtitle": "告诉我们您遇到的任何投诉或技术问题。",
+    "name": "姓名",
+    "namePlaceholder": "您的姓名",
+    "contact": "联系方式",
+    "contactPlaceholder": "手机或邮箱",
+    "message": "问题描述",
+    "messagePlaceholder": "请描述您遇到的问题…",
+    "submit": "发送",
+    "close": "关闭",
+    "successTitle": "谢谢！",
+    "successDesc": "您的反馈已收到，我们会尽快回复您。",
+    "required": "请填写所有必填字段。",
+    "yes": "是",
+    "no": "否",
+    "thanks": "感谢您的反馈！",
+    "formTitle": "报告问题"
+  },
+  "center": {
+    "title": "选择考试中心",
+    "subtitle": "先选择您的国家，然后搜索并选择所需的考试中心。",
+    "countryLabel": "国家",
+    "countryPlaceholder": "选择国家",
+    "centerLabel": "考试中心",
+    "centerPlaceholder": "搜索或选择考试中心",
+    "searchPlaceholder": "按名称、城市或地址搜索…",
+    "selectCountryFirst": "请先选择国家",
+    "confirm": "在地图上查看",
+    "noneFound": "没有匹配的结果。"
+  },
+  "findMethod": {
+    "title": "您想如何找到考试中心？",
+    "subtitle": "请选择最方便的方式。",
+    "gpsCta": "使用我的位置",
+    "gpsDesc": "通过 GPS 查找附近的考试中心",
+    "gpsError": "无法检测您的位置。请重试或在下方搜索。",
+    "gpsDenied": "位置访问被拒绝。请在下方搜索。",
+    "locating": "定位中…",
+    "searchCta": "搜索位置",
+    "searchDesc": "输入城市、地区或地址",
+    "inputLabel": "城市或地区",
+    "inputPlaceholder": "例如：开罗，埃及 或纳赛尔城",
+    "search": "搜索",
+    "searching": "搜索中…",
+    "searchError": "找不到该位置。请检查后重试。",
+    "noResults": "未找到结果。",
+    "centerCta": "选择考试中心",
+    "centerDesc": "从所有考试中心列表中选择",
+    "testLabel": "已选考试：{test}"
+  }
+}
