@@ -13,7 +13,7 @@ type CenterRow = {
   address: string;
   lat: number;
   lng: number;
-  country: "eg" | "sa";
+  country: string;
   city: string | null;
   link: string | null;
 };
@@ -78,7 +78,7 @@ export async function fetchCenters(): Promise<TestCenter[]> {
         address: String(row.address ?? ""),
         lat: row.lat,
         lng: row.lng,
-        country: row.country === "sa" ? "sa" : "eg",
+        country: row.country || "eg",
         city: row.city || undefined,
         link: row.link ?? "",
       }));

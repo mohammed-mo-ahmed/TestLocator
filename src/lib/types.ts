@@ -1,4 +1,4 @@
-export type TestCenterCountry = "eg" | "sa";
+export type TestCenterCountry = string;
 
 export interface TestCenter {
   code: string;

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { requireAuth, signOut } from "@/app/admin/actions";
+import AddCenterForm from "@/app/admin/centers/AddCenterForm";
 import CentersList from "@/app/admin/centers/CentersList";
 import { getAllCenters, getTestDates } from "@/lib/admin-service";
 
@@ -41,6 +42,7 @@ export default async function AdminCentersPage() {
       </div>
 
       <h1 className="mb-6 text-2xl font-bold text-slate-900">Test Centers</h1>
+      <AddCenterForm dates={dates} />
       <CentersList centers={rows} dates={dates} testCode="sat" />
     </div>
   );

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
 
 import { toggleCenterDateAvailability } from "@/app/admin/actions";
+import { COUNTRIES, getCountryName } from "@/lib/countries";
 
 type CenterRow = {
   code: string;
@@ -87,8 +88,11 @@ export default function CentersList({
           className="h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm outline-none focus:border-indigo-400 sm:w-44"
         >
           <option value="all">All countries</option>
-          <option value="eg">Egypt</option>
-          <option value="sa">Saudi Arabia</option>
+          {COUNTRIES.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -121,7 +125,7 @@ export default function CentersList({
                 </td>
                 <td className="hidden px-4 py-3 text-slate-600 lg:table-cell">{c.city ?? "—"}</td>
                 <td className="hidden px-4 py-3 text-slate-600 sm:table-cell">
-                  {c.country === "eg" ? "EG" : "SA"}
+                  {getCountryName(c.country)}
                 </td>
                 {dateLabels.map(({ date }) => {
                   const isAvailable = (c.availability[date] ?? 0) > 0;

@@ -11,10 +11,21 @@ import { fetchCenters } from "@/lib/data-service";
 import { cn } from "@/lib/cx";
 import type { TestCenter, TestCenterCountry } from "@/lib/types";
 
-const COUNTRY_FLAGS: Record<TestCenterCountry, string> = {
-  eg: "🇪🇬",
-  sa: "🇸🇦",
-};
+const FLAG_EMOJI: Record<string, string> = {};
+
+function getFlagEmoji(countryCode: string): string {
+  const code = countryCode.toUpperCase();
+  if (FLAG_EMOJI[code]) return FLAG_EMOJI[code];
+  try {
+    const emoji = String.fromCodePoint(
+      ...[...code].map((c) => 0x1f1e6 - 65 + c.charCodeAt(0))
+    );
+    FLAG_EMOJI[code] = emoji;
+    return emoji;
+  } catch {
+    return "";
+  }
+}
 
 function getCountryName(locale: string, country: TestCenterCountry): string {
   try {
@@ -57,17 +68,15 @@ export default function CenterPicker({
 
   const countryOptions = useMemo(() => {
     const present = new Set(centers.map((center) => center.country));
-    return (
-      (["eg", "sa"] as TestCenterCountry[])
-        .filter((code) => present.has(code))
-        .map(
-          (code): SearchableOption => ({
-            value: code,
-            label: getCountryName(locale, code),
-            icon: COUNTRY_FLAGS[code],
-          })
-        )
-    );
+    return Array.from(present)
+      .sort()
+      .map(
+        (code): SearchableOption => ({
+          value: code,
+          label: getCountryName(locale, code),
+          icon: getFlagEmoji(code),
+        })
+      );
   }, [centers, locale]);
 
   const centerOptions = useMemo((): SearchableOption[] => {
