@@ -70,6 +70,9 @@ export async function generateMetadata({
       "SAT test center",
       "check seat availability",
     ],
+    verification: {
+      google: "VV1pEJTrOgv8Ar8KucAruCLJ7Hj5zmC-V-Z2mIw_pv0",
+    },
     alternatesCanonicalUsedMarker: undefined,
   } as Metadata;
 }

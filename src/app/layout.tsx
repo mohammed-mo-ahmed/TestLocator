@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   applicationName: "TestLocator",
   title: {
     default: "TestLocator",
-    template: "%s Â· TestLocator",
+    template: "%s · TestLocator",
   },
   description:
     "Find the nearest test center around you, check live seat availability and pick the closest match in a few clicks.",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   publisher: "TestLocator",
   referrer: "origin-when-cross-origin",
   verification: {
-    google: "VV1pEJTrOgv8Ar8KucAruCLJ7Hj5zC-mIw2_pv0",
+    google: "VV1pEJTrOgv8Ar8KucAruCLJ7Hj5zmC-V-Z2mIw_pv0",
   },
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: "/seo/og.png",
         width: 1200,
         height: 630,
-        alt: "TestLocator â€” find the nearest test center",
+        alt: "TestLocator — find the nearest test center",
       },
     ],
   },
