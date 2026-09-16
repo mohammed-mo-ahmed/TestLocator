@@ -6,7 +6,7 @@ import { updateSession } from "./lib/supabase-middleware";
 
 const handleI18n = createMiddleware(routing);
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/admin")) {
     return updateSession(request);
   }
