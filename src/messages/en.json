@@ -1,7 +1,11 @@
 {
   "meta": {
     "title": "TestLocator",
-    "description": "Find the nearest test center around you, see live seat availability and pick the closest match in a few clicks."
+    "description": "Find the nearest test center around you, see live seat availability and pick the closest match in a few clicks.",
+    "find": {
+      "title": "Find a test center",
+      "description": "Discover the closest test center to you, see live seat availability and choose the nearest option in a few clicks."
+    }
   },
   "header": {
     "brand": "TestLocator",

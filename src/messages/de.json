@@ -1,7 +1,11 @@
 {
   "meta": {
     "title": "TestLocator",
-    "description": "Finden Sie das nächste Testzentrum, sehen Sie die Platzverfügbarkeit und wählen Sie in wenigen Klicks die beste Option aus."
+    "description": "Finden Sie das nächste Testzentrum, sehen Sie die Platzverfügbarkeit und wählen Sie in wenigen Klicks die beste Option aus.",
+    "find": {
+      "title": "Testzentrum finden",
+      "description": "Finden Sie das nächste Testzentrum, sehen Sie die Live-Verfügbarkeit freier Plätze und wählen Sie die beste Option in wenigen Klicks."
+    }
   },
   "header": {
     "brand": "TestLocator",

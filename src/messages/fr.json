@@ -1,7 +1,11 @@
 {
   "meta": {
     "title": "TestLocator",
-    "description": "Trouvez le centre d'examen le plus proche, consultez la disponibilité des places et choisissez la meilleure option en quelques clics."
+    "description": "Trouvez le centre d'examen le plus proche, consultez la disponibilité des places et choisissez la meilleure option en quelques clics.",
+    "find": {
+      "title": "Trouver un centre d'examen",
+      "description": "Trouvez le centre d'examen le plus proche, consultez la disponibilité en direct des places et choisissez la meilleure option en quelques clics."
+    }
   },
   "header": {
     "brand": "TestLocator",

@@ -1,7 +1,11 @@
 {
   "meta": {
     "title": "TestLocator",
-    "description": "查找您附近最近的考试中心，查看座位可用情况，轻松点几下即可选出最合适的选择。"
+    "description": "查找您附近最近的考试中心，查看座位可用情况，轻松点几下即可选出最合适的选择。",
+    "find": {
+      "title": "查找考试中心",
+      "description": "查找离您最近的考试中心，实时查看座位可用情况，只需几次点击即可选择最合适的地点。"
+    }
   },
   "header": {
     "brand": "TestLocator",
