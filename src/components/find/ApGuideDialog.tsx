@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 function SectionTitle({
@@ -18,27 +19,29 @@ function SectionTitle({
 }
 
 function ScheduleTable({
-  days,
+  rows,
+  colDate,
+  colMorning,
+  colAfternoon,
 }: {
-  days: Array<{
-    day: string;
-    morning: React.ReactNode;
-    afternoon: React.ReactNode;
-  }>;
+  rows: Array<{ key: string; day: string; morning: string; afternoon: string }>;
+  colDate: string;
+  colMorning: string;
+  colAfternoon: string;
 }) {
   return (
     <div className="my-4 overflow-x-auto rounded-xl border border-slate-200">
       <table className="w-full min-w-[560px] border-collapse text-sm">
         <thead>
           <tr className="bg-slate-50 text-slate-700">
-            <th className="px-3 py-2.5 text-start font-bold">التاريخ</th>
-            <th className="px-3 py-2.5 text-start font-bold">الفترة الصباحية</th>
-            <th className="px-3 py-2.5 text-start font-bold">الفترة المسائية</th>
+            <th className="px-3 py-2.5 text-start font-bold">{colDate}</th>
+            <th className="px-3 py-2.5 text-start font-bold">{colMorning}</th>
+            <th className="px-3 py-2.5 text-start font-bold">{colAfternoon}</th>
           </tr>
         </thead>
         <tbody>
-          {days.map((row) => (
-            <tr key={row.day} className="border-t border-slate-200">
+          {rows.map((row) => (
+            <tr key={row.key} className="border-t border-slate-200">
               <td className="px-3 py-2.5 font-semibold text-slate-700">{row.day}</td>
               <td className="whitespace-pre-line px-3 py-2.5 align-top text-slate-600">
                 {row.morning}
@@ -54,85 +57,74 @@ function ScheduleTable({
   );
 }
 
-const weekOne = [
-  {
-    day: "الإثنين 3 مايو",
-    morning: <>الجغرافيا البشرية{`\n`}Physics C: Mechanics</>,
-    afternoon: <>الأحياء{`\n`}اللغة والثقافة الإيطالية</>,
-  },
-  {
-    day: "الثلاثاء 4 مايو",
-    morning: <>Business with Personal Finance{`\n`}الحكومة والسياسة الأمريكية</>,
-    afternoon: <>التاريخ الأوروبي{`\n`}الاقتصاد الجزئي</>,
-  },
-  {
-    day: "الأربعاء 5 مايو",
-    morning: <>الأمن السيبراني{`\n`}اللغة الإنجليزية وآدابها</>,
-    afternoon: <>Physics 1: Algebra-Based{`\n`}Physics C: Electricity and Magnetism</>,
-  },
-  {
-    day: "الخميس 6 مايو",
-    morning: (
-      <>
-        اللغة والثقافة الفرنسية{`\n`}Physics 2: Algebra-Based{`\n`}تاريخ العالم: العصر الحديث
-      </>
-    ),
-    afternoon: <>الدراسات الأفريقية الأمريكية{`\n`}الكيمياء</>,
-  },
-  {
-    day: "الجمعة 7 مايو",
-    morning: <>اللغة والثقافة الألمانية{`\n`}تاريخ الولايات المتحدة</>,
-    afternoon: <>الاقتصاد الكلي{`\n`}الشبكات*</>,
-  },
+const AR_SUBJECTS: Record<string, string> = {
+  "Human Geography": "الجغرافيا البشرية",
+  Biology: "الأحياء",
+  "Italian Language and Culture": "اللغة والثقافة الإيطالية",
+  "U.S. Government and Politics": "الحكومة والسياسة الأمريكية",
+  "European History": "التاريخ الأوروبي",
+  Microeconomics: "الاقتصاد الجزئي",
+  Cybersecurity: "الأمن السيبراني",
+  "English Language and Composition": "اللغة الإنجليزية وآدابها",
+  "French Language and Culture": "اللغة والثقافة الفرنسية",
+  "World History: Modern": "تاريخ العالم: العصر الحديث",
+  "African American Studies": "الدراسات الأفريقية الأمريكية",
+  Chemistry: "الكيمياء",
+  "German Language and Culture": "اللغة والثقافة الألمانية",
+  "U.S. History": "تاريخ الولايات المتحدة",
+  Macroeconomics: "الاقتصاد الكلي",
+  Networking: "الشبكات",
+  "Music Theory": "نظرية الموسيقى",
+  "Japanese Language and Culture": "اللغة والثقافة اليابانية",
+  Statistics: "الإحصاء",
+  "English Literature and Composition": "اللغة الإنجليزية والتعبير",
+  "Art History": "تاريخ الفن",
+  "Spanish Language and Culture": "اللغة والثقافة الإسبانية",
+  "Chinese Language and Culture": "اللغة والثقافة الصينية",
+  "Environmental Science": "العلوم البيئية",
+  "Comparative Government and Politics": "الحكومة والسياسة المقارنة",
+  "Spanish Literature and Culture": "الأدب والثقافة الإسبانية",
+  Latin: "اللاتينية",
+  Psychology: "علم النفس",
+};
+
+type DayRow = { date: string; morning: string[]; afternoon: string[] };
+
+const weekOne: DayRow[] = [
+  { date: "2027-05-03", morning: ["Human Geography", "Physics C: Mechanics"], afternoon: ["Biology", "Italian Language and Culture"] },
+  { date: "2027-05-04", morning: ["Business with Personal Finance", "U.S. Government and Politics"], afternoon: ["European History", "Microeconomics"] },
+  { date: "2027-05-05", morning: ["Cybersecurity", "English Language and Composition"], afternoon: ["Physics 1: Algebra-Based", "Physics C: Electricity and Magnetism"] },
+  { date: "2027-05-06", morning: ["French Language and Culture", "Physics 2: Algebra-Based", "World History: Modern"], afternoon: ["African American Studies", "Chemistry"] },
+  { date: "2027-05-07", morning: ["German Language and Culture", "U.S. History"], afternoon: ["Macroeconomics", "Networking"] },
 ];
 
-const weekTwo = [
-  {
-    day: "الإثنين 10 مايو",
-    morning: <>Calculus AB{`\n`}Calculus BC</>,
-    afternoon: <>نظرية الموسيقى{`\n`}Seminar</>,
-  },
-  {
-    day: "الثلاثاء 11 مايو",
-    morning: <>اللغة والثقافة اليابانية{`\n`}Precalculus</>,
-    afternoon: <>الإحصاء</>,
-  },
-  {
-    day: "الأربعاء 12 مايو",
-    morning: <>اللغة الإنجليزية والتعبير</>,
-    afternoon: <>تاريخ الفن{`\n`}Computer Science A</>,
-  },
-  {
-    day: "الخميس 13 مايو",
-    morning: <>اللغة والثقافة الإسبانية</>,
-    afternoon: <>اللغة والثقافة الصينية{`\n`}العلوم البيئية</>,
-  },
-  {
-    day: "الجمعة 14 مايو",
-    morning: (
-      <>
-        الحكومة والسياسة المقارنة{`\n`}Computer Science Principles{`\n`}الأدب والثقافة
-        الإسبانية
-      </>
-    ),
-    afternoon: <>اللاتينية{`\n`}علم النفس</>,
-  },
+const weekTwo: DayRow[] = [
+  { date: "2027-05-10", morning: ["Calculus AB", "Calculus BC"], afternoon: ["Music Theory", "Seminar"] },
+  { date: "2027-05-11", morning: ["Japanese Language and Culture", "Precalculus"], afternoon: ["Statistics"] },
+  { date: "2027-05-12", morning: ["English Literature and Composition"], afternoon: ["Art History", "Computer Science A"] },
+  { date: "2027-05-13", morning: ["Spanish Language and Culture"], afternoon: ["Chinese Language and Culture", "Environmental Science"] },
+  { date: "2027-05-14", morning: ["Comparative Government and Politics", "Computer Science Principles", "Spanish Literature and Culture"], afternoon: ["Latin", "Psychology"] },
 ];
 
-const portfolioDeadlines = [
-  { subject: "AP Art and Design", deadline: "7 مايو 2027 — 11:59 مساءً بتوقيت ET" },
-  { subject: "AP Computer Science Principles", deadline: "30 أبريل 2027 — 11:59 مساءً بتوقيت ET" },
-  { subject: "AP Seminar وAP Research", deadline: "30 أبريل 2027 — 11:59 مساءً بتوقيت ET" },
-  { subject: "AP World Languages and Cultures", deadline: "30 أبريل 2027 — 11:59 مساءً بتوقيت ET" },
+const portfolioDeadlines: Array<{ subject: string; deadlineKey: string }> = [
+  { subject: "AP Art and Design", deadlineKey: "portfolioDeadline1" },
+  { subject: "AP Computer Science Principles", deadlineKey: "portfolioDeadline2" },
+  { subject: "AP Seminar & AP Research", deadlineKey: "portfolioDeadline2" },
+  { subject: "AP World Languages and Cultures", deadlineKey: "portfolioDeadline2" },
 ];
 
-const fees = [
-  { location: "الولايات المتحدة، أقاليمها، كندا ومدارس DoWEA", fee: "99 دولارًا" },
-  { location: "خارج الولايات المتحدة", fee: "129 دولارًا" },
+const fees: Array<{ locationKey: string; valueKey: string }> = [
+  { locationKey: "feeUS", valueKey: "feeUSValue" },
+  { locationKey: "feeIntl", valueKey: "feeIntlValue" },
 ];
 
 export default function ApGuideDialog() {
+  const t = useTranslations("apGuide");
+  const tFeedback = useTranslations("feedback");
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
+
+  const isRtl = locale === "ar";
 
   useEffect(() => {
     if (!open) return;
@@ -148,6 +140,35 @@ export default function ApGuideDialog() {
     };
   }, [open]);
 
+  const rich = (key: string) =>
+    t.rich(key, {
+      strong: (chunks) => <strong className="font-bold text-slate-900">{chunks}</strong>,
+    });
+
+  const subject = (name: string) => {
+    const label = isRtl ? AR_SUBJECTS[name] ?? name : name;
+    return name === "Networking" ? `${label}*` : label;
+  };
+
+  const formatDay = (date: string) =>
+    new Intl.DateTimeFormat(locale, {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+    }).format(new Date(`${date}T00:00:00`));
+
+  const buildRows = (days: DayRow[]) =>
+    days.map((d) => ({
+      key: d.date,
+      day: formatDay(d.date),
+      morning: d.morning.map(subject).join("\n"),
+      afternoon: d.afternoon.map(subject).join("\n"),
+    }));
+
+  const colDate = t("colDate");
+  const colMorning = t("colMorning");
+  const colAfternoon = t("colAfternoon");
+
   return (
     <>
       <button
@@ -156,7 +177,7 @@ export default function ApGuideDialog() {
         className="flex w-fit items-center justify-center gap-2 rounded-xl bg-rose-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-rose-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
       >
         <span aria-hidden="true">⚠️</span>
-        مهم: تأكد قبل التوجه إلى المركز
+        {t("button")}
       </button>
 
       <AnimatePresence>
@@ -169,7 +190,7 @@ export default function ApGuideDialog() {
             className="fixed inset-0 z-[75] flex items-start justify-center overflow-y-auto bg-slate-900/50 p-4 backdrop-blur-md"
             role="dialog"
             aria-modal="true"
-            aria-label="دليل مراكز اختبارات AP"
+            aria-label={t("modalLabel")}
           >
             <motion.div
               initial={{ opacity: 0, y: -160, scale: 0.92 }}
@@ -181,121 +202,115 @@ export default function ApGuideDialog() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                aria-label="إغلاق"
+                aria-label={tFeedback("close")}
                 className="absolute end-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200 hover:text-slate-900"
               >
                 ✕
               </button>
 
               <div
-                dir="rtl"
+                dir={isRtl ? "rtl" : "ltr"}
                 className="max-h-[82vh] overflow-y-auto px-6 py-8 text-slate-700 sm:px-8"
               >
-                <h1 className="text-2xl font-bold text-slate-900">مراكز اختبارات AP</h1>
+                <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
 
                 <SectionTitle className="mt-6">
-                  <span aria-hidden="true">⚠️ </span>مهم: تأكد قبل التوجه إلى المركز
+                  <span aria-hidden="true">⚠️ </span>
+                  {t("warningTitle")}
                 </SectionTitle>
-                <p className="leading-relaxed">
-                  يشمل هذا الدليل مراكز ومدارس سبق لها تقديم اختبارات AP في السنوات الماضية.{" "}
-                  <strong className="text-slate-900">
-                    وجود مدرسة في الدليل لا يعني بالضرورة أنها ستقدم الاختبارات هذا العام.
-                  </strong>
-                </p>
-                <p className="mt-3 leading-relaxed">تواصل مع المدرسة مباشرة للتأكد من:</p>
+                <p className="leading-relaxed">{rich("warningBody")}</p>
+                <p className="mt-3 leading-relaxed">{t("warningAsk")}</p>
                 <ul className="mt-2 list-inside list-disc space-y-1 leading-relaxed">
-                  <li>أنها ستقدم اختبارات AP هذا العام.</li>
-                  <li>أنها تقبل طلابًا من مدارس أخرى.</li>
-                  <li>أنها تقدم مادة AP التي تريد اختبارها.</li>
+                  <li>{t("warning1")}</li>
+                  <li>{t("warning2")}</li>
+                  <li>{t("warning3")}</li>
                 </ul>
 
                 <SectionTitle>
-                  <span aria-hidden="true">📞 </span>كيف تتواصل مع المدرسة؟
+                  <span aria-hidden="true">📞 </span>
+                  {t("contactTitle")}
                 </SectionTitle>
                 <ol className="list-inside list-decimal space-y-1 leading-relaxed">
-                  <li>ابحث عن رقم هاتف المدرسة.</li>
-                  <li>اطلب التحدث مع <strong className="text-slate-900">منسق AP</strong>.</li>
-                  <li>اسأل عما إذا كانت المدرسة تقبل طلابًا من خارجها لأداء اختبارات AP هذا العام.</li>
-                  <li>اسأل عن المواد المتاحة، ومواعيد التسجيل، والرسوم.</li>
+                  <li>{t("contact1")}</li>
+                  <li>{rich("contact2")}</li>
+                  <li>{t("contact3")}</li>
+                  <li>{t("contact4")}</li>
                 </ol>
-                <p className="mt-3 leading-relaxed">
-                  <strong className="text-slate-900">
-                    ابدأ بالتواصل مع المدارس في أقرب وقت ممكن.
-                  </strong>{" "}
-                  فقد تضع كل مدرسة مواعيد نهائية وسياسات خاصة بها لقبول الطلاب من خارج المدرسة،
-                  كما قد تكون لديها سعة محدودة.
-                </p>
-                <p className="mt-3 leading-relaxed">
-                  يتم تحديث <strong className="text-slate-900">دليل دورات AP (AP Course Ledger)</strong>{" "}
-                  في شهر <strong className="text-slate-900">نوفمبر</strong> من كل عام، لذلك إذا لم
-                  تجد مركزًا مناسبًا، يمكنك التحقق منه مرة أخرى في نوفمبر.
-                </p>
+                <p className="mt-3 leading-relaxed">{rich("contactEarly")}</p>
+                <p className="mt-3 leading-relaxed">{rich("contactLedger")}</p>
 
                 <SectionTitle>
-                  <span aria-hidden="true">📝 </span>إذا وافقت المدرسة على استضافتك
+                  <span aria-hidden="true">📝 </span>
+                  {t("hostingTitle")}
                 </SectionTitle>
-                <p className="leading-relaxed">سيكون منسق AP مسؤولًا عن:</p>
+                <p className="leading-relaxed">{t("hostingIntro")}</p>
                 <ul className="mt-2 list-inside list-disc space-y-1 leading-relaxed">
-                  <li>طلب مواد الاختبار الخاصة بك.</li>
-                  <li>إبلاغك بموعد ومكان الاختبار.</li>
-                  <li>تحصيل رسوم الاختبار.</li>
+                  <li>{t("hosting1")}</li>
+                  <li>{t("hosting2")}</li>
+                  <li>{t("hosting3")}</li>
                 </ul>
 
                 <SectionTitle>
-                  <span aria-hidden="true">⏰ </span>موعد مهم
+                  <span aria-hidden="true">⏰ </span>
+                  {t("deadlineTitle")}
                 </SectionTitle>
-                <p className="leading-relaxed">
-                  الموعد النهائي المعتاد للمدارس لطلب اختبارات AP هو{" "}
-                  <strong className="text-slate-900">منتصف نوفمبر</strong>.
-                </p>
-                <p className="mt-3 leading-relaxed">
-                  إذا لم تجد مركزًا قبل ذلك، <strong className="text-slate-900">استمر في البحث</strong>.
-                  قد تتمكن مدرسة من إضافتك إلى طلبها بعد الموعد النهائي وطلب إعفاء من رسوم الطلب
-                  المتأخر، لكن ذلك يعتمد على سياسة المدرسة وتقديرها.
-                </p>
+                <p className="leading-relaxed">{rich("deadline1")}</p>
+                <p className="mt-3 leading-relaxed">{rich("deadline2")}</p>
 
                 <hr className="my-8 border-slate-200" />
 
-                <h1 className="text-2xl font-bold text-slate-900">مواعيد اختبارات AP لعام 2027</h1>
-                <p className="mt-3 leading-relaxed">تُعقد اختبارات AP في <strong className="text-slate-900">شهر مايو</strong>.</p>
-                <p className="mt-2 font-bold text-slate-900">أسبوعا الاختبارات:</p>
-                <p className="text-slate-900">
-                  <strong>3–7 مايو</strong> و<strong>10–14 مايو 2027</strong>
-                </p>
-                <p className="mt-2 leading-relaxed">
-                  سيحدد منسق AP في المدرسة موعد اختبارك ومكانه بشكل نهائي.
-                </p>
+                <h1 className="text-2xl font-bold text-slate-900">{t("datesTitle")}</h1>
+                <p className="mt-3 leading-relaxed">{rich("datesIntro")}</p>
+                <p className="mt-2 font-bold text-slate-900">{t("datesWeeksLabel")}</p>
+                <p className="font-bold text-slate-900">{t("datesWeeks")}</p>
+                <p className="mt-2 leading-relaxed">{t("datesCoordinator")}</p>
 
                 <h2 className="mt-5 mb-2 text-lg font-bold text-slate-900">
-                  الأسبوع الأول — 3 إلى 7 مايو
+                  {t("week1Title")}
                 </h2>
-                <ScheduleTable days={weekOne} />
+                <ScheduleTable
+                  rows={buildRows(weekOne)}
+                  colDate={colDate}
+                  colMorning={colMorning}
+                  colAfternoon={colAfternoon}
+                />
 
                 <h2 className="mt-6 mb-2 text-lg font-bold text-slate-900">
-                  الأسبوع الثاني — 10 إلى 14 مايو
+                  {t("week2Title")}
                 </h2>
-                <ScheduleTable days={weekTwo} />
+                <ScheduleTable
+                  rows={buildRows(weekTwo)}
+                  colDate={colDate}
+                  colMorning={colMorning}
+                  colAfternoon={colAfternoon}
+                />
 
                 <p className="text-sm leading-relaxed text-slate-500">
-                  * اختبار <strong>Networking</strong> مخصص لمدارس البرنامج التجريبي لعام 2026–2027 فقط.
+                  {rich("networkingNote")}
                 </p>
 
                 <h2 className="mt-6 mb-3 text-lg font-bold text-slate-900">
-                  مواعيد تسليم الأعمال عبر AP Digital Portfolio
+                  {t("portfolioTitle")}
                 </h2>
                 <div className="overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full min-w-[460px] border-collapse text-sm">
                     <thead>
                       <tr className="bg-slate-50 text-slate-700">
-                        <th className="px-3 py-2.5 text-start font-bold">المادة</th>
-                        <th className="px-3 py-2.5 text-start font-bold">الموعد النهائي</th>
+                        <th className="px-3 py-2.5 text-start font-bold">
+                          {t("colSubject")}
+                        </th>
+                        <th className="px-3 py-2.5 text-start font-bold">
+                          {t("colDeadline")}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {portfolioDeadlines.map((row) => (
                         <tr key={row.subject} className="border-t border-slate-200">
-                          <td className="px-3 py-2.5 font-semibold text-slate-700">{row.subject}</td>
-                          <td className="px-3 py-2.5 text-slate-600">{row.deadline}</td>
+                          <td className="px-3 py-2.5 font-semibold text-slate-700">
+                            {row.subject}
+                          </td>
+                          <td className="px-3 py-2.5 text-slate-600">{t(row.deadlineKey)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -304,61 +319,47 @@ export default function ApGuideDialog() {
 
                 <hr className="my-8 border-slate-200" />
 
-                <h1 className="text-2xl font-bold text-slate-900">رسوم اختبارات AP لعام 2027</h1>
+                <h1 className="text-2xl font-bold text-slate-900">{t("feesTitle")}</h1>
                 <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full min-w-[400px] border-collapse text-sm">
                     <thead>
                       <tr className="bg-slate-50 text-slate-700">
-                        <th className="px-3 py-2.5 text-start font-bold">مكان الاختبار</th>
-                        <th className="px-3 py-2.5 text-start font-bold">الرسوم الأساسية</th>
+                        <th className="px-3 py-2.5 text-start font-bold">
+                          {t("colLocation")}
+                        </th>
+                        <th className="px-3 py-2.5 text-start font-bold">
+                          {t("colBaseFee")}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {fees.map((row) => (
-                        <tr key={row.location} className="border-t border-slate-200">
-                          <td className="px-3 py-2.5 text-slate-700">{row.location}</td>
-                          <td className="px-3 py-2.5 font-bold text-slate-900">{row.fee}</td>
+                        <tr key={row.locationKey} className="border-t border-slate-200">
+                          <td className="px-3 py-2.5 text-slate-700">{t(row.locationKey)}</td>
+                          <td className="px-3 py-2.5 font-bold text-slate-900">
+                            {t(row.valueKey)}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
 
-                <SectionTitle>رسوم إضافية</SectionTitle>
-                <p className="leading-relaxed">
-                  <strong className="text-slate-900">التسجيل المتأخر:</strong> +40 دولارًا لكل اختبار
-                </p>
-                <p className="mt-1 leading-relaxed">
-                  ينطبق على الاختبارات التي يتم طلبها بين <strong>14 نوفمبر و12 مارس</strong> للمقررات
-                  السنوية أو مقررات الفصل الدراسي الأول.
-                </p>
-                <p className="mt-3 leading-relaxed">
-                  <strong className="text-slate-900">الاختبار غير المستخدم / الملغى:</strong> 40 دولارًا لكل اختبار
-                </p>
-                <p className="mt-1 leading-relaxed">
-                  ينطبق عند إلغاء اختبار تم طلبه بعد <strong>الموعد النهائي للطلب في 13 نوفمبر</strong>.
-                </p>
+                <SectionTitle>{t("extraTitle")}</SectionTitle>
+                <p className="leading-relaxed">{rich("lateLabel")}</p>
+                <p className="mt-1 leading-relaxed">{rich("lateBody")}</p>
+                <p className="mt-3 leading-relaxed">{rich("cancelLabel")}</p>
+                <p className="mt-1 leading-relaxed">{rich("cancelBody")}</p>
 
-                <SectionTitle>تخفيض الرسوم</SectionTitle>
-                <p className="leading-relaxed">
-                  قد يحصل الطلاب الذين لديهم حاجة مالية كبيرة على{" "}
-                  <strong className="text-slate-900">
-                    تخفيض قدره 37 دولارًا من College Board لكل اختبار
-                  </strong>
-                  . وقد يتوفر دعم إضافي حسب المنطقة والمدرسة.
-                </p>
+                <SectionTitle>{t("discountTitle")}</SectionTitle>
+                <p className="leading-relaxed">{rich("discountBody")}</p>
 
                 <SectionTitle>
-                  <span aria-hidden="true">⚠️ </span>مهم
+                  <span aria-hidden="true">⚠️ </span>
+                  {t("importantTitle")}
                 </SectionTitle>
-                <p className="leading-relaxed">
-                  قد تفرض المدرسة رسومًا إضافية مقابل <strong className="text-slate-900">المراقبة والإدارة</strong>.
-                </p>
-                <p className="mt-3 leading-relaxed">
-                  وبالنسبة للطلاب الذين يؤدون الاختبار خارج الولايات المتحدة، فإن رسوم College Board
-                  الأساسية هي <strong className="text-slate-900">129 دولارًا</strong>، لكن المبلغ
-                  النهائي قد يكون أعلى حسب مركز الاختبار.
-                </p>
+                <p className="leading-relaxed">{rich("important1")}</p>
+                <p className="mt-3 leading-relaxed">{rich("important2")}</p>
               </div>
             </motion.div>
           </motion.div>
