@@ -1,8 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 import { buildSchedule } from "@/data/availability";
-import { TEST_CENTERS } from "@/data/test-centers";
-import { TEST_CENTER_COORDINATES } from "@/data/test-center-coordinates";
+import { ALL_CENTER_COORDINATES, ALL_CENTERS } from "@/data/all-centers";
 import { getTestByCode } from "@/data/test-dates";
 import { getSupabaseEnv, isSupabaseConfigured } from "./supabase";
 import type { TestCenter, TestInfo } from "./types";
@@ -34,10 +33,11 @@ function monthColumn(date: string): string {
   return `m${date.replace(/-/g, "_")}`;
 }
 
-export function getLocalCenters(): TestCenter[] {
+export function getLocalCenters(testCode = "sat"): TestCenter[] {
   const centers: TestCenter[] = [];
-  for (const seed of TEST_CENTERS) {
-    const coords = TEST_CENTER_COORDINATES[seed.code];
+  for (const seed of ALL_CENTERS) {
+    if ((seed.test ?? "sat") !== testCode) continue;
+    const coords = ALL_CENTER_COORDINATES[seed.code];
     if (!coords) continue;
     centers.push({
       code: seed.code,
@@ -53,14 +53,15 @@ export function getLocalCenters(): TestCenter[] {
   return centers;
 }
 
-export async function fetchCenters(): Promise<TestCenter[]> {
+export async function fetchCenters(testCode = "sat"): Promise<TestCenter[]> {
   const client = getClient();
-  if (!client) return getLocalCenters();
+  if (!client) return getLocalCenters(testCode);
 
   try {
     const { data, error } = await client
       .from("test_centers")
       .select("code, name, address, lat, lng, country, city, link")
+      .eq("test", testCode)
       .order("code");
 
     if (error) throw error;
@@ -83,9 +84,9 @@ export async function fetchCenters(): Promise<TestCenter[]> {
         link: row.link ?? "",
       }));
 
-    return centers.length > 0 ? centers : getLocalCenters();
+    return centers.length > 0 ? centers : getLocalCenters(testCode);
   } catch {
-    return getLocalCenters();
+    return getLocalCenters(testCode);
   }
 }
 
@@ -93,6 +94,8 @@ export async function fetchAvailability(
   test: TestInfo,
   centerCodes: string[]
 ): Promise<Record<string, Record<string, number>>> {
+  // Tests without fixed administrations (e.g. AP) have no availability to fetch.
+  if (test.dates.length === 0) return {};
   const client = getClient();
   if (client) {
     try {

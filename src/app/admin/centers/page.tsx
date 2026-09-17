@@ -7,16 +7,28 @@ import { getAllCenters, getTestDates } from "@/lib/admin-service";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminCentersPage() {
+const TEST_OPTIONS = [
+  { code: "sat", label: "SAT" },
+  { code: "ap", label: "AP" },
+];
+
+export default async function AdminCentersPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ test?: string }>;
+}) {
   await requireAuth();
-  const dates = await getTestDates("sat");
-  const centers = await getAllCenters(dates);
+  const { test } = await searchParams;
+  const testCode = test === "ap" ? "ap" : "sat";
+  const dates = await getTestDates(testCode);
+  const centers = await getAllCenters(dates, testCode);
   const rows = centers.map((c) => ({
     code: c.code,
     name: c.name,
     address: c.address,
     city: c.city,
     country: c.country,
+    test: c.test,
     availability: c.availability,
   }));
 
@@ -41,9 +53,28 @@ export default async function AdminCentersPage() {
         </div>
       </div>
 
-      <h1 className="mb-6 text-2xl font-bold text-slate-900">Test Centers</h1>
-      <AddCenterForm dates={dates} />
-      <CentersList centers={rows} dates={dates} testCode="sat" />
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <h1 className="text-2xl font-bold text-slate-900">Test Centers</h1>
+        <div className="inline-flex rounded-full border border-slate-200 bg-white p-1">
+          {TEST_OPTIONS.map((opt) => {
+            const active = testCode === opt.code;
+            return (
+              <Link
+                key={opt.code}
+                href={`/admin/centers?test=${opt.code}`}
+                className={`rounded-full px-4 py-1.5 text-sm font-semibold transition ${
+                  active ? "bg-indigo-600 text-white" : "text-slate-600 hover:text-indigo-600"
+                }`}
+              >
+                {opt.label}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      <AddCenterForm dates={dates} testCode={testCode} />
+      <CentersList centers={rows} dates={dates} testCode={testCode} />
     </div>
   );
 }

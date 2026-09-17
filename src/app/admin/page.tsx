@@ -7,11 +7,12 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminOverview() {
   await requireAuth();
-  const [stats, reports, centers, dates] = await Promise.all([
+  const [stats, reports, centers, dates, apCenters] = await Promise.all([
     getVoteStats(),
     getReports(5),
     getAllCenters(),
     getTestDates("sat"),
+    getAllCenters([], "ap"),
   ]);
 
   return (
@@ -52,8 +53,11 @@ export default async function AdminOverview() {
         <Card label="Yes votes" value={stats.yes} tone="green" />
         <Card label="No votes" value={stats.no} tone="red" />
         <Card label="Total votes" value={stats.total} tone="blue" />
-        <Card label="Centers" value={centers.length} tone="purple" />
+        <Card label="SAT centers" value={centers.length} tone="purple" />
       </div>
+      <p className="mt-3 text-sm text-slate-500">
+        AP centers: {apCenters.length}
+      </p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
         <div className="rounded-2xl border border-slate-200 bg-white p-5">

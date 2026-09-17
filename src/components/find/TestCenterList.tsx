@@ -30,7 +30,9 @@ export default function TestCenterList({
     <div className="flex max-h-[560px] flex-col gap-3 overflow-y-auto pe-1">
       {items.map((center, index) => {
         const isActive = activeCode === center.code;
-        const hasSeats = Object.values(center.availability).some((seats) => seats > 0);
+        const hasSeats =
+          dateLabels.length === 0 ||
+          Object.values(center.availability).some((seats) => seats > 0);
 
         return (
           <div
@@ -73,31 +75,33 @@ export default function TestCenterList({
                 ) : null}
               </span>
 
-              <span className="flex flex-wrap gap-1.5">
-                {dateLabels.map(({ date, label }) => {
-                  const seats = center.availability[date] ?? 0;
-                  const available = seats > 0;
-                  return (
-                    <span
-                      key={date}
-                      className={cn(
-                        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs",
-                        available
-                          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                          : "border-rose-200 bg-rose-50 text-rose-600"
-                      )}
-                    >
+              {dateLabels.length > 0 ? (
+                <span className="flex flex-wrap gap-1.5">
+                  {dateLabels.map(({ date, label }) => {
+                    const seats = center.availability[date] ?? 0;
+                    const available = seats > 0;
+                    return (
                       <span
+                        key={date}
                         className={cn(
-                          "h-1.5 w-1.5 rounded-full",
-                          available ? "bg-emerald-500" : "bg-rose-500"
+                          "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs",
+                          available
+                            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                            : "border-rose-200 bg-rose-50 text-rose-600"
                         )}
-                      />
-                      {label} · {t(available ? "available" : "unavailable")}
-                    </span>
-                  );
-                })}
-              </span>
+                      >
+                        <span
+                          className={cn(
+                            "h-1.5 w-1.5 rounded-full",
+                            available ? "bg-emerald-500" : "bg-rose-500"
+                          )}
+                        />
+                        {label} · {t(available ? "available" : "unavailable")}
+                      </span>
+                    );
+                  })}
+                </span>
+              ) : null}
             </button>
 
             <a

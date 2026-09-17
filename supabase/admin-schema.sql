@@ -23,6 +23,11 @@ create table if not exists public.test_centers (
 alter table public.test_centers
   add column if not exists link text;
 
+-- Exam each center belongs to (default 'sat'). Tests are scoped so SAT and AP
+-- centers never mix in results. AP centers have no month columns at all.
+alter table public.test_centers
+  add column if not exists test text not null default 'sat';
+
 -- Feedback: rating votes from the "useful" question (Yes / No)
 create table if not exists public.rating_votes (
   id         bigint generated always as identity primary key,

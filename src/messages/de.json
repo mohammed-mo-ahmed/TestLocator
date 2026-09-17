@@ -38,6 +38,10 @@
       "name": "SAT",
       "desc": "Zulassungstest für das College"
     },
+    "ap": {
+      "name": "AP",
+      "desc": "Fortgeschrittene Prüfungen für universitäre Leistungspunkte"
+    },
     "act": {
       "name": "ACT",
       "desc": "US-Zulassungstest für das College"

@@ -10,12 +10,20 @@ export const SAT_DATES = ["2026-10-03", "2026-11-07", "2026-12-05"];
 /**
  * Test catalog. `available: false` keeps the card disabled (Coming soon)
  * while the data model stays ready for future tests.
+ *
+ * A test with an empty `dates` array (AP) has no fixed administrations:
+ * centers are listed without date chips / availability columns.
  */
 export const TESTS: TestInfo[] = [
   {
     code: "sat",
     available: true,
     dates: SAT_DATES,
+  },
+  {
+    code: "ap",
+    available: true,
+    dates: [],
   },
   {
     code: "act",

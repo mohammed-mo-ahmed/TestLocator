@@ -41,6 +41,7 @@ export interface TestCenterRow {
   country: string;
   city: string | null;
   link: string | null;
+  test: string;
   availability: Record<string, number>;
 }
 
@@ -80,18 +81,22 @@ export async function getReports(limit = 50): Promise<ProblemReport[]> {
   return (data as ProblemReport[]) ?? [];
 }
 
-export async function getAllCenters(dates: string[] = []): Promise<TestCenterRow[]> {
+export async function getAllCenters(
+  dates: string[] = [],
+  testCode = "sat"
+): Promise<TestCenterRow[]> {
   const admin = getAdminClient();
   if (!admin) return [];
 
   const monthCols = dates.map(monthColumn);
   const selectCols = monthCols.length > 0
-    ? `code, name, address, lat, lng, country, city, link, ${monthCols.join(", ")}`
-    : "code, name, address, lat, lng, country, city, link";
+    ? `code, name, address, lat, lng, country, city, link, test, ${monthCols.join(", ")}`
+    : "code, name, address, lat, lng, country, city, link, test";
 
   const { data, error } = await admin
     .from("test_centers")
     .select(selectCols)
+    .eq("test", testCode)
     .order("code");
 
   if (error || !data) return [];
@@ -110,6 +115,7 @@ export async function getAllCenters(dates: string[] = []): Promise<TestCenterRow
       country: String(row.country),
       city: (row.city as string) ?? null,
       link: (row.link as string) ?? null,
+      test: String(row.test ?? testCode),
       availability,
     };
   });

@@ -12,6 +12,7 @@ type CenterRow = {
   address: string;
   country: string;
   city: string | null;
+  test: string;
   availability: Record<string, number>;
 };
 
@@ -97,8 +98,10 @@ export default function CentersList({
       </div>
 
       <p className="mb-3 text-sm text-slate-500">
-        Showing {filtered.length} of {centers.length} centers · months:{" "}
-        {dateLabels.map((d) => d.label).join(", ")}
+        Showing {filtered.length} of {centers.length} {testCode.toUpperCase()} centers ·
+        {dateLabels.length > 0
+          ? ` months: ${dateLabels.map((d) => d.label).join(", ")}`
+          : " no fixed exam dates"}
       </p>
 
       <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white">
@@ -107,6 +110,7 @@ export default function CentersList({
             <tr className="border-b border-slate-200 text-left">
               <th className="px-4 py-3 font-semibold text-slate-700">Code</th>
               <th className="px-4 py-3 font-semibold text-slate-700">Name</th>
+              <th className="px-4 py-3 font-semibold text-slate-700">Test</th>
               <th className="hidden px-4 py-3 font-semibold text-slate-700 lg:table-cell">City</th>
               <th className="hidden px-4 py-3 font-semibold text-slate-700 sm:table-cell">Country</th>
               {dateLabels.map(({ date, label }) => (
@@ -122,6 +126,11 @@ export default function CentersList({
                 <td className="px-4 py-3 font-mono text-slate-500">{c.code}</td>
                 <td className="px-4 py-3">
                   <span className="line-clamp-2 font-medium text-slate-900">{c.name}</span>
+                </td>
+                <td className="px-4 py-3">
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-slate-600">
+                    {c.test}
+                  </span>
                 </td>
                 <td className="hidden px-4 py-3 text-slate-600 lg:table-cell">{c.city ?? "—"}</td>
                 <td className="hidden px-4 py-3 text-slate-600 sm:table-cell">

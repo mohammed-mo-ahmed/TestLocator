@@ -8,8 +8,8 @@ npm run dev
 ```
 
 Open http://localhost:3000. The app works out of the box using **local seed data**
-(154 test centers — 66 Egypt + 88 Saudi Arabia — with per-date seat
-availability for the SAT) bundled in `src/data/`.
+(231 test centers — 66 Egypt + 88 Saudi Arabia for SAT, plus 41 Saudi + 36 Egypt
+AP centers — with per-date seat availability for the SAT) bundled in `src/data/`.
 
 ## Stack
 
@@ -35,6 +35,7 @@ dates:
 | Test    | Dates configured | Status        |
 | ------- | ---------------- | ------------- |
 | SAT     | Yes              | Live          |
+| AP      | No (no fixed administrations) | Live |
 | ACT     | Yes (demo)       | Disabled      |
 | IELTS   | No               | Coming soon   |
 | TOEFL   | No               | Coming soon   |
@@ -44,25 +45,40 @@ The SAT currently uses the administrations from the availability sheet:
 are disabled so it seeds nothing). To enable another test, set its `available`
 flag to `true` — seeding and the UI pick it up automatically.
 
+AP behaves exactly like SAT (wizard, map, ranked list, admin center management)
+**except** it has no fixed exam dates: no date chips, no availability columns
+and no admin Months page.
+
 ## Test center data
 
-- `src/data/test-centers.ts` — the 154 centers (code, name, address, country,
+- `src/data/test-centers.ts` — the 154 SAT centers (code, name, address, country,
   city), 66 in Egypt + 88 in Saudi Arabia.
+- `src/data/ap-centers.ts` — the 77 AP centers (codes `900001`–`900077`), 41
+  Saudi + 36 Egypt, generated from the AP sheets; includes the same coordinates
+  embedded in the sheet (`AP_CENTER_COORDINATES`).
+- `src/data/all-centers.ts` — aggregates both data services read from
+  (`ALL_CENTERS`, `ALL_CENTER_COORDINATES`). Each center carries a `test` field
+  (`"sat"` or `"ap"`); `data-service.ts` filters on it.
 - `src/data/test-center-coordinates.ts` — lat/lng per center, resolved from the
-  Google Maps links in the user's Excel sheet (2:1 in both countries, so they
+  Google Maps links in the user's Excel sheets (2:1 in both countries, so they
   are street-accurate).
 - `src/data/test-availability.ts` — per-center, per-date seat availability from
-  the sheet (0 = unavailable, 5–30 = available) for the SAT dates.
+  the SAT sheet (0 = unavailable, 5–30 = available) for the SAT dates.
 
 These files are **generated** by:
 
 ```bash
-npx tsx scripts/extract-sheet.ts   # Excel → scripts/sheet-data.json
-npx tsx scripts/resolve-links.ts   # goo.gl links → scripts/coords-cache.json
-npx tsx scripts/build-data-files.ts # → src/data/*
+npx tsx scripts/extract-sheet.ts      # SAT Excel → scripts/sheet-data.json
+npx tsx scripts/resolve-links.ts      # goo.gl links → scripts/coords-cache.json
+npx tsx scripts/build-data-files.ts   # → src/data/test-centers.ts
+npx tsx scripts/build-ap-data.ts      # AP Excel → src/data/ap-centers.ts
 ```
 
-To refresh after the sheet changes, re-run the three scripts above.
+`build-ap-data.ts` reads `public/جدول بيانات بدون عنوان (1).xlsx` (sheet
+`الورقة4`), asks the user to confirm a "pick center" override each run, and
+assigns stable integer codes (`900001`+) so AP codes never collide with the
+5–6 digit SAT codes. To refresh after either sheet changes, re-run the matching
+scripts above.
 
 ## Supabase (live data)
 
@@ -87,9 +103,11 @@ Run `supabase/admin-schema.sql` in Supabase → SQL Editor. It creates **all**
 tables, functions and policies in one shot (safe on a fresh project and
 re-runnable):
 
-- `test_centers` — (code, name, address, lat, lng, country, city, link) plus
+- `test_centers` — (code, name, address, lat, lng, country, city, link,
+  `test` — `'sat'` or `'ap'`, default `'sat'`) plus
   **one column per admin month** (`m2026_10_03`, `m2026_11_07`, `m2026_12_05`,
-  …), each `1` = متاح / `0` = غير متاح — exactly like the Excel sheet.
+  …), each `1` = متاح / `0` = غير متاح — exactly like the Excel sheet. AP
+  centers have `test = 'ap'` and no month columns (no fixed administrations).
 - `test_dates` — the month grid per test (the same 3 SAT months by default).
 - `rating_votes` — Yes/No feedback answers.
 - `problem_reports` — messages from the "Report a problem" form.
@@ -118,9 +136,11 @@ npm run seed
 
 This creates the month columns and upserts:
 
-- `test_centers` — 154 rows (`code, name, address, lat, lng, country, city,
-  link`, plus one column per month with متاح/غير متاح values)
-- `test_dates` — the month grid per test (the three SAT months)
+- `test_centers` — 231 rows (`code, name, address, lat, lng, country, city,
+  link, test`, plus one month column per SAT administration with متاح/غير متاح
+  values; AP rows omit month values)
+- `test_dates` — the month grid per test (the three SAT months for SAT, none for
+  AP)
 
 The per-month values come straight from the sheet (`متاح` → 1, `غير متاح` → 0).
 
@@ -146,14 +166,17 @@ The dashboard lets you:
 
 - See Yes / No vote counts for the rating question.
 - Read problem reports.
-- Toggle any test center's month متاح/غير متاح (each month is its own column).
+- Switch between **SAT** and **AP** test centers (`/admin/centers?test=sat|ap`).
+- Toggle any SAT center's month متاح/غير متاح (each month is its own column).
+- Add a SAT or AP center; AP centers have no month availability.
 - Add a month (adds a column, default غير متاح for every center) or delete a
   month (drops the column from all centers).
 
 ## Data refresh / editing
 
-The source data lives in the user's Excel file (`public/جدول بيانات بدون
-عنوان.xlsx`). To update:
+### SAT centers
+
+The SAT source data lives in `public/جدول بيانات بدون عنوان.xlsx`. To update:
 
 1. Replace the xlsx with the latest version.
 2. Re-run the pipeline:
@@ -166,6 +189,41 @@ npx tsx scripts/build-data-files.ts
 
 3. Reseed if Supabase is configured: `npm run seed`.
 
-The site stores the sheet's متاح / غير متاح values as-is (1 / 0), one column
-per month — no seat counts are invented. The public site and admin dashboard
-read the very same values the sheet has.
+### AP centers
+
+AP source data was spread over two sheets (`public/جدول بيانات بدون عنوان.xlsx`
+— Egypt, and `جدول بيانات بدون عنوان (1).xlsx` — Saudi Arabia), read by
+`scripts/build-ap-data.ts`. The builder is **incremental**: if a source sheet is
+gone it reuses the centers already generated (so deleting the Saudi sheet does
+not drop the 41 Saudi centers), and each run confirms/preserves the
+"pick center" overrides for rows whose sheet values were stale — remove an
+entry from `OVERRIDES` once the sheet itself is fixed.
+
+```bash
+npx tsx scripts/build-ap-data.ts   # → src/data/ap-centers.ts
+```
+
+The script assigns codes `900001`+ keeping existing codes stable even if the
+sheet grows or a source file is removed.
+
+> Note: the Egypt sheet currently lives at the same path the SAT pipeline
+> (`extract-sheet.ts`) previously read from. The SAT data is already generated
+> and seeded, so this only matters if you re-run the SAT sheet pipeline without
+> restoring the real SAT sheet at that path first.
+
+### Seeding after edits
+
+```bash
+npm run seed
+```
+
+The seeder reads `ALL_CENTERS` (SAT + AP) and writes each center's `test`
+column plus only its own test's month columns — AP rows have none.
+
+### Notes
+
+- Both Excel files are **not** committed to git. Keep a copy outside the repo.
+- `src/data/test-centers.ts` and `src/data/ap-centers.ts` are generated — do
+  not hand-edit; re-run the scripts above.
+- The per-month values come straight from the sheet (`متاح` → 1, `غير متاح`
+  → 0).

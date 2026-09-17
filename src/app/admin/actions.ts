@@ -106,6 +106,7 @@ export async function addTestCenter(data: {
   lat: number;
   lng: number;
   link: string;
+  test: string;
   availability: Record<string, number>;
 }) {
   await requireAuth();
@@ -120,8 +121,16 @@ export async function addTestCenter(data: {
     lat: data.lat,
     lng: data.lng,
     link: data.link || null,
+    test: data.test || "sat",
   };
 
+  // All existing month columns are NOT NULL, so AP centers (no dates) and SAT
+  // centers without a row in the availability sheet still need a value: 0.
+  const { data: dateRows } = await admin.from("test_dates").select("date");
+  const existingMonths = new Set(
+    (dateRows ?? []).map((r) => monthColumn(String(r.date)))
+  );
+  for (const col of existingMonths) row[col] = 0;
   for (const [date, value] of Object.entries(data.availability)) {
     row[monthColumn(date)] = value;
   }

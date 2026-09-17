@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import TestCenterList from "@/components/find/TestCenterList";
+import ApGuideDialog from "@/components/find/ApGuideDialog";
 import { Spinner } from "@/components/ui/primitives";
 import { fetchAvailability, fetchCenters, fetchTestDates } from "@/lib/data-service";
 import { formatKm, haversineKm } from "@/lib/haversine";
@@ -59,7 +60,7 @@ export default function ResultsView({
     (async () => {
       setLoading(true);
       const dates = await fetchTestDates(test.code);
-      const centers = await fetchCenters();
+      const centers = await fetchCenters(test.code);
       const availability = await fetchAvailability(
         test,
         centers.map((center) => center.code)
@@ -168,7 +169,10 @@ export default function ResultsView({
           <p className="text-slate-500">{t("empty")}</p>
         </div>
       ) : (
-        <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
+        <div className="flex flex-col gap-6">
+          {test.code === "ap" ? <ApGuideDialog /> : null}
+
+          <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
           <div className="map-shell h-[420px] shrink-0 overflow-hidden rounded-2xl border border-slate-200 lg:h-[560px] lg:sticky lg:top-20" dir="ltr">
             <TestCenterMap
               centers={items}
@@ -197,6 +201,7 @@ export default function ResultsView({
               activeCode={activeCode}
               onSelect={handleSelect}
             />
+          </div>
           </div>
         </div>
       )}

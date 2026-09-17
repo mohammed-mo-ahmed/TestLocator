@@ -7,8 +7,7 @@ dotenv.config({ path: ".env.local" });
 import { createClient } from "@supabase/supabase-js";
 
 import { buildSchedule } from "../src/data/availability";
-import { TEST_CENTERS } from "../src/data/test-centers";
-import { TEST_CENTER_COORDINATES } from "../src/data/test-center-coordinates";
+import { ALL_CENTER_COORDINATES, ALL_CENTERS } from "../src/data/all-centers";
 import { TESTS } from "../src/data/test-dates";
 
 function monthColumn(date: string): string {
@@ -59,15 +58,27 @@ async function main() {
     }
   }
 
-  // 3. Upsert the centers including their per-month columns.
-  const allDates = activeTests.flatMap((t) => t.dates);
-  const centers = TEST_CENTERS.flatMap((center) => {
-    const coords = TEST_CENTER_COORDINATES[center.code];
+  // 3. Upsert the centers including their per-month columns. Each center only
+  // gets its own test's month values; tests without dates (e.g. AP) get 0 for
+  // every existing month column so the NOT NULL columns always receive a value.
+  const datesByTest: Record<string, string[]> = {};
+  for (const test of activeTests) datesByTest[test.code] = test.dates;
+
+  // Every month column that currently exists on test_centers (created above).
+  const allMonthColumns = new Set<string>();
+  for (const test of activeTests) {
+    for (const date of test.dates) allMonthColumns.add(monthColumn(date));
+  }
+
+  const centers = ALL_CENTERS.flatMap((center) => {
+    const coords = ALL_CENTER_COORDINATES[center.code];
     if (!coords) {
       console.log(`Skipping center without coordinates: ${center.code} ${center.name}`);
       return [];
     }
-    const schedule = buildSchedule("sat", allDates, [center.code])[center.code];
+    const testCode = center.test ?? "sat";
+    const dates = datesByTest[testCode] ?? [];
+    const schedule = buildSchedule(testCode, dates, [center.code])[center.code];
     const row: Record<string, unknown> = {
       code: center.code,
       name: center.name,
@@ -77,9 +88,13 @@ async function main() {
       country: center.country,
       city: center.city || null,
       link: center.link,
+      test: testCode,
     };
-    for (const date of allDates) {
+    for (const date of dates) {
       row[monthColumn(date)] = schedule?.[date] ?? 1;
+    }
+    for (const col of allMonthColumns) {
+      if (row[col] === undefined) row[col] = 0;
     }
     return [row];
   });
@@ -102,8 +117,9 @@ async function main() {
     if (datesError) throw datesError;
   }
 
+  const monthCount = activeTests.reduce((sum, t) => sum + t.dates.length, 0);
   console.log(
-    `Seeded ${centers.length} test centers across ${allDates.length} month column(s) for: ${activeTests.map((t) => t.code).join(", ")}`
+    `Seeded ${centers.length} test centers across ${monthCount} month column(s) for: ${[...new Set(ALL_CENTERS.map((c) => c.test ?? "sat"))].join(", ")}`
   );
 }
 

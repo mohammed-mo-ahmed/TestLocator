@@ -107,7 +107,7 @@ export default function TestFinder() {
             exit="exit"
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <CenterPicker onBack={handleBackFromCenter} onConfirm={handleCenterConfirm} />
+            <CenterPicker test={test} onBack={handleBackFromCenter} onConfirm={handleCenterConfirm} />
           </motion.div>
         )}
 

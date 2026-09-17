@@ -30,7 +30,13 @@ function parseGpsLinkLocal(link: string): { lat: number; lng: number } | null {
   }
 }
 
-export default function AddCenterForm({ dates }: { dates: string[] }) {
+export default function AddCenterForm({
+  dates,
+  testCode,
+}: {
+  dates: string[];
+  testCode: string;
+}) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
@@ -109,6 +115,7 @@ export default function AddCenterForm({ dates }: { dates: string[] }) {
           lat: latNum,
           lng: lngNum,
           link: gpsLink.trim(),
+          test: testCode,
           availability,
         });
         setOpen(false);
@@ -139,7 +146,7 @@ export default function AddCenterForm({ dates }: { dates: string[] }) {
         onClick={() => setOpen(true)}
         className="mb-6 h-11 rounded-xl bg-indigo-600 px-6 text-sm font-semibold text-white transition hover:bg-indigo-700"
       >
-        + Add Test Center
+        + Add {testCode.toUpperCase()} Center
       </button>
     );
   }
@@ -147,7 +154,7 @@ export default function AddCenterForm({ dates }: { dates: string[] }) {
   return (
     <div className="mb-6 rounded-2xl border border-slate-200 bg-white p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-bold text-slate-900">Add Test Center</h2>
+        <h2 className="text-lg font-bold text-slate-900">Add {testCode.toUpperCase()} Test Center</h2>
         <button
           type="button"
           onClick={() => setOpen(false)}

@@ -62,6 +62,7 @@ export interface TestCenterSeed {
   address: string;
   country: TestCenterCountry;
   city?: string;
+  test?: string;
   link: string;
 }
 

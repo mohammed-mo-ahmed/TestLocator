@@ -38,6 +38,10 @@
       "name": "SAT",
       "desc": "Scholastic Assessment Test for college admission"
     },
+    "ap": {
+      "name": "AP",
+      "desc": "Advanced Placement program for college credit"
+    },
     "act": {
       "name": "ACT",
       "desc": "American College Testing for college admission"

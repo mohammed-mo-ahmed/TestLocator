@@ -9,7 +9,7 @@ import SearchableDropdown, {
 import { buttonClass, Spinner } from "@/components/ui/primitives";
 import { fetchCenters } from "@/lib/data-service";
 import { cn } from "@/lib/cx";
-import type { TestCenter, TestCenterCountry } from "@/lib/types";
+import type { TestCenter, TestCenterCountry, TestInfo } from "@/lib/types";
 
 const FLAG_EMOJI: Record<string, string> = {};
 
@@ -37,9 +37,11 @@ function getCountryName(locale: string, country: TestCenterCountry): string {
 }
 
 export default function CenterPicker({
+  test,
   onConfirm,
   onBack,
 }: {
+  test: TestInfo;
   onConfirm: (center: TestCenter) => void;
   onBack: () => void;
 }) {
@@ -55,7 +57,7 @@ export default function CenterPicker({
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const all = await fetchCenters();
+      const all = await fetchCenters(test.code);
       if (!cancelled) {
         setCenters(all);
         setLoading(false);
@@ -64,7 +66,7 @@ export default function CenterPicker({
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [test.code]);
 
   const countryOptions = useMemo(() => {
     const present = new Set(centers.map((center) => center.country));

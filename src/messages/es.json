@@ -38,6 +38,10 @@
       "name": "SAT",
       "desc": "Examen de evaluación para la admisión universitaria"
     },
+    "ap": {
+      "name": "AP",
+      "desc": "Programa de exámenes avanzados para créditos universitarios"
+    },
     "act": {
       "name": "ACT",
       "desc": "Examen de evaluación para la admisión universitaria en EE. UU."

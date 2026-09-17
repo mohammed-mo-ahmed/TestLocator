@@ -121,14 +121,16 @@ export default function TestCenterMap({
   const icons = useMemo(() => {
     const map: Record<string, L.DivIcon> = {};
     for (const center of centers) {
-      const hasSeats = Object.values(center.availability).some((seats) => seats > 0);
+      const hasSeats =
+        dateLabels.length === 0 ||
+        Object.values(center.availability).some((seats) => seats > 0);
       map[center.code] = buildPinIcon(
         hasSeats ? "#4f46e5" : "#f43f5e",
         activeCode === center.code
       );
     }
     return map;
-  }, [centers, activeCode]);
+  }, [centers, activeCode, dateLabels.length]);
 
   return (
     <MapContainer center={defaultCenter} zoom={13} zoomControl>
@@ -178,26 +180,28 @@ export default function TestCenterMap({
                 </p>
               ) : null}
 
-              <div className="mt-2.5 flex flex-wrap gap-1.5">
-                {dateLabels.map(({ date, label }) => {
-                  const seats = center.availability[date] ?? 0;
-                  const available = seats > 0;
-                  return (
-                    <span
-                      key={date}
-                      className={cn(
-                        "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold",
-                        available
-                          ? "bg-emerald-50 text-emerald-700"
-                          : "bg-rose-50 text-rose-600"
-                      )}
-                    >
-                      <span className={cn("h-1.5 w-1.5 rounded-full", available ? "bg-emerald-500" : "bg-rose-500")} />
-                      {label} · {t(available ? "available" : "unavailable")}
-                    </span>
-                  );
-                })}
-              </div>
+              {dateLabels.length > 0 ? (
+                <div className="mt-2.5 flex flex-wrap gap-1.5">
+                  {dateLabels.map(({ date, label }) => {
+                    const seats = center.availability[date] ?? 0;
+                    const available = seats > 0;
+                    return (
+                      <span
+                        key={date}
+                        className={cn(
+                          "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold",
+                          available
+                            ? "bg-emerald-50 text-emerald-700"
+                            : "bg-rose-50 text-rose-600"
+                        )}
+                      >
+                        <span className={cn("h-1.5 w-1.5 rounded-full", available ? "bg-emerald-500" : "bg-rose-500")} />
+                        {label} · {t(available ? "available" : "unavailable")}
+                      </span>
+                    );
+                  })}
+                </div>
+              ) : null}
 
               <a
                 href={center.link}

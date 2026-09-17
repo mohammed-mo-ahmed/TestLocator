@@ -38,6 +38,10 @@
       "name": "SAT",
       "desc": "Teste de avaliação para admissão na faculdade"
     },
+    "ap": {
+      "name": "AP",
+      "desc": "Programa de exames avançados para créditos universitários"
+    },
     "act": {
       "name": "ACT",
       "desc": "Prova americana para admissão na faculdade"
