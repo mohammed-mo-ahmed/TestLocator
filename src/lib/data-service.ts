@@ -24,7 +24,13 @@ function getClient(): SupabaseClient | null {
   if (!clientRef) {
     const config = getSupabaseEnv();
     if (!config) return null;
-    clientRef = createClient(config.url, config.anonKey);
+    clientRef = createClient(config.url, config.anonKey, {
+      global: {
+        fetch: (input, init = {}) => {
+          return fetch(input, { ...init, cache: "no-store" });
+        },
+      },
+    });
   }
   return clientRef;
 }
@@ -84,7 +90,7 @@ export async function fetchCenters(testCode = "sat"): Promise<TestCenter[]> {
         link: row.link ?? "",
       }));
 
-    return centers.length > 0 ? centers : getLocalCenters(testCode);
+    return centers;
   } catch {
     return getLocalCenters(testCode);
   }
@@ -92,14 +98,16 @@ export async function fetchCenters(testCode = "sat"): Promise<TestCenter[]> {
 
 export async function fetchAvailability(
   test: TestInfo,
-  centerCodes: string[]
+  centerCodes: string[],
+  dates: string[] = test.dates
 ): Promise<Record<string, Record<string, number>>> {
   // Tests without fixed administrations (e.g. AP) have no availability to fetch.
-  if (test.dates.length === 0) return {};
+  if (dates.length === 0) return {};
+  if (centerCodes.length === 0) return {};
   const client = getClient();
   if (client) {
     try {
-      const cols = test.dates.map(monthColumn);
+      const cols = dates.map(monthColumn);
       const { data, error } = await client
         .from("test_centers")
         .select(`code, ${cols.join(", ")}`)
@@ -111,19 +119,25 @@ export async function fetchAvailability(
       for (const row of data as unknown as Record<string, unknown>[]) {
         const code = String(row.code);
         const perDate: Record<string, number> = {};
-        for (let i = 0; i < test.dates.length; i++) {
-          perDate[test.dates[i]] = Number(row[cols[i]] ?? 0);
+        for (let i = 0; i < dates.length; i++) {
+          perDate[dates[i]] = Number(row[cols[i]] ?? 0);
         }
         byCenter[code] = perDate;
       }
 
-      if (Object.keys(byCenter).length > 0) return byCenter;
+      return byCenter;
     } catch {
-      // fall back to local deterministic schedule
+      // Do not substitute seed availability when the configured database fails.
+      return Object.fromEntries(
+        centerCodes.map((code) => [
+          code,
+          Object.fromEntries(dates.map((date) => [date, 0])),
+        ])
+      );
     }
   }
 
-  return buildSchedule(test.code, test.dates, centerCodes);
+  return buildSchedule(test.code, dates, centerCodes);
 }
 
 export async function fetchTestDates(testCode = "sat"): Promise<string[]> {
@@ -140,8 +154,26 @@ export async function fetchTestDates(testCode = "sat"): Promise<string[]> {
     if (error) throw error;
 
     const dates = (data as Array<{ date: string }>).map((r) => r.date);
-    return dates.length > 0 ? dates : getTestByCode(testCode)?.dates ?? [];
+    return dates;
   } catch {
     return getTestByCode(testCode)?.dates ?? [];
+  }
+}
+
+export async function fetchTestLastUpdated(testCode: string): Promise<string | null> {
+  const client = getClient();
+  if (!client) return null;
+
+  try {
+    const { data, error } = await client
+      .from("test_meta")
+      .select("last_updated_at")
+      .eq("test_code", testCode)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data?.last_updated_at ?? null;
+  } catch {
+    return null;
   }
 }

@@ -83,7 +83,7 @@
     "loadData": "टेस्ट सेंटर लोड हो रहे हैं…",
     "empty": "आपके स्थान के लिए अभी कोई टेस्ट सेंटर नहीं मिला।",
     "showing": "{count, plural, =1 {सबसे नज़दीकी # सेंटर} other {सबसे नज़दीकी # सेंटर}} दिखाए जा रहे हैं",
-    "moreOnMap": "मानचित्र पर +{count} और",
+    "lastUpdated": "अंतिम अपडेट: {date}",
     "availableBadge": "सीटें उपलब्ध",
     "fullBadge": "भरा हुआ",
     "distanceAway": "{km} किमी दूर",

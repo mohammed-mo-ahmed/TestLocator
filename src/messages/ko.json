@@ -83,7 +83,7 @@
     "loadData": "시험장을 불러오는 중…",
     "empty": "현재 위치 주변에 시험장이 아직 없습니다.",
     "showing": "가장 가까운 {count, plural, =1 {센터 #개} other {센터 #개}} 표시 중",
-    "moreOnMap": "지도에 +{count}개 더",
+    "lastUpdated": "마지막 업데이트: {date}",
     "availableBadge": "좌석 가능",
     "fullBadge": "만석",
     "distanceAway": "{km} km 거리",

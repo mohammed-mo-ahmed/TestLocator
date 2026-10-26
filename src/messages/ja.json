@@ -83,7 +83,7 @@
     "loadData": "テストセンターを読み込み中…",
     "empty": "お近くにテストセンターが見つかりませんでした。",
     "showing": "最寄り {count, plural, =1 {# 件} other {# 件}} を表示中",
-    "moreOnMap": "地図上にさらに +{count} 件",
+    "lastUpdated": "最終更新: {date}",
     "availableBadge": "座席あり",
     "fullBadge": "満席",
     "distanceAway": "{km} km 先",

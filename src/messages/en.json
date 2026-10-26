@@ -83,7 +83,7 @@
     "loadData": "Loading test centers…",
     "empty": "No test centers found for your location yet.",
     "showing": "Showing {count, plural, =1 {# nearest center} other {# nearest centers}}",
-    "moreOnMap": "+{count} more on the map",
+    "lastUpdated": "Last updated {date}",
     "availableBadge": "Seats available",
     "fullBadge": "Full",
     "distanceAway": "{km} km away",

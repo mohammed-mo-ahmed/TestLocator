@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-import { Badge } from "@/components/ui/primitives";
 import { cn } from "@/lib/cx";
 import type { TestCenterWithDistance } from "@/lib/types";
 
@@ -13,14 +12,14 @@ export interface DateLabel {
 
 export default function TestCenterList({
   items,
-  totalOnMap,
   dateLabels,
+  lastUpdated,
   activeCode,
   onSelect,
 }: {
   items: TestCenterWithDistance[];
-  totalOnMap: number;
   dateLabels: DateLabel[];
+  lastUpdated: string;
   activeCode: string | null;
   onSelect: (code: string) => void;
 }) {
@@ -130,11 +129,9 @@ export default function TestCenterList({
         );
       })}
 
-      {totalOnMap > 0 ? (
-        <Badge tone="neutral" className="mx-auto">
-          {t("moreOnMap", { count: totalOnMap })}
-        </Badge>
-      ) : null}
+      <p className="mx-auto text-xs text-slate-500">
+        {t("lastUpdated", { date: lastUpdated })}
+      </p>
     </div>
   );
 }

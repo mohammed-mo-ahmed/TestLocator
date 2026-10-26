@@ -18,6 +18,17 @@ export async function requireAuth() {
   return user;
 }
 
+async function touchTestMeta(testCode: string) {
+  const admin = getAdminClient();
+  if (!admin) throw new Error("Admin client not configured");
+
+  const { error } = await admin.from("test_meta").upsert(
+    { test_code: testCode, last_updated_at: new Date().toISOString() },
+    { onConflict: "test_code" }
+  );
+  if (error) throw error;
+}
+
 export async function toggleCenterDateAvailability(
   testCode: string,
   centerCode: string,
@@ -32,8 +43,10 @@ export async function toggleCenterDateAvailability(
   const { error } = await admin
     .from("test_centers")
     .update({ [col]: available ? 1 : 0 })
-    .eq("code", centerCode);
+    .eq("code", centerCode)
+    .eq("test", testCode);
   if (error) throw error;
+  await touchTestMeta(testCode);
 }
 
 export async function addTestMonth(testCode: string, date: string) {
@@ -45,6 +58,7 @@ export async function addTestMonth(testCode: string, date: string) {
     p_date: date,
   });
   if (error) throw error;
+  await touchTestMeta(testCode);
 }
 
 export async function deleteTestMonth(testCode: string, date: string) {
@@ -56,6 +70,7 @@ export async function deleteTestMonth(testCode: string, date: string) {
     p_date: date,
   });
   if (error) throw error;
+  await touchTestMeta(testCode);
 }
 
 function monthColumn(date: string): string {
@@ -137,4 +152,5 @@ export async function addTestCenter(data: {
 
   const { error } = await admin.from("test_centers").insert(row);
   if (error) throw error;
+  await touchTestMeta(data.test || "sat");
 }

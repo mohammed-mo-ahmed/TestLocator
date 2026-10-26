@@ -52,6 +52,12 @@ create table if not exists public.test_dates (
   primary key (test_code, date)
 );
 
+-- Last change time is tracked independently for each test.
+create table if not exists public.test_meta (
+  test_code       text primary key,
+  last_updated_at timestamptz not null default now()
+);
+
 -- ---------------------------------------------------------------------------
 -- Dynamic month columns
 -- ---------------------------------------------------------------------------
@@ -73,6 +79,10 @@ begin
     'alter table public.test_centers add column if not exists %I integer not null default 0',
     'm' || to_char(p_date, 'YYYY_MM_DD')
   );
+
+  insert into public.test_meta (test_code, last_updated_at)
+  values (p_test, now())
+  on conflict (test_code) do update set last_updated_at = excluded.last_updated_at;
 end;
 $$;
 
@@ -90,6 +100,10 @@ begin
     'alter table public.test_centers drop column if exists %I',
     'm' || to_char(p_date, 'YYYY_MM_DD')
   );
+
+  insert into public.test_meta (test_code, last_updated_at)
+  values (p_test, now())
+  on conflict (test_code) do update set last_updated_at = excluded.last_updated_at;
 end;
 $$;
 
@@ -107,6 +121,7 @@ alter table public.test_centers enable row level security;
 alter table public.rating_votes enable row level security;
 alter table public.problem_reports enable row level security;
 alter table public.test_dates enable row level security;
+alter table public.test_meta enable row level security;
 
 drop policy if exists "public read test_centers" on public.test_centers;
 create policy "public read test_centers"
@@ -123,6 +138,10 @@ create policy "public insert problem_reports"
 drop policy if exists "public read test_dates" on public.test_dates;
 create policy "public read test_dates"
   on public.test_dates for select using (true);
+
+drop policy if exists "public read test_meta" on public.test_meta;
+create policy "public read test_meta"
+  on public.test_meta for select using (true);
 
 -- Legacy cleanup (older layout had an availability table + a single
 -- test_centers.available column). Dropped once the columns above are live.

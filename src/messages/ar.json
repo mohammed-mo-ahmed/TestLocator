@@ -83,7 +83,7 @@
     "loadData": "جارٍ تحميل مراكز الاختبار…",
     "empty": "لا توجد مراكز اختبار لموقعك حتى الآن.",
     "showing": "عرض {count, plural, =1 {مركز واحد الأقرب} other {# من أقرب المراكز}}",
-    "moreOnMap": "+{count} آخرون على الخريطة",
+    "lastUpdated": "آخر تحديث: {date}",
     "availableBadge": "مقاعد متاحة",
     "fullBadge": "مكتمل",
     "distanceAway": "على بعد {km} كم",

@@ -83,7 +83,7 @@
     "loadData": "Chargement des centres d'examen…",
     "empty": "Aucun centre d'examen trouvé pour votre localisation pour l'instant.",
     "showing": "Affichage de {count, plural, =1 {# centre le plus proche} other {# centres les plus proches}}",
-    "moreOnMap": "+{count} de plus sur la carte",
+    "lastUpdated": "Dernière mise à jour : {date}",
     "availableBadge": "Places disponibles",
     "fullBadge": "Complet",
     "distanceAway": "à {km} km",

@@ -83,7 +83,7 @@
     "loadData": "Carregando centros de testes…",
     "empty": "Nenhum centro de testes encontrado para sua localização ainda.",
     "showing": "Mostrando {count, plural, =1 {o centro mais próximo} other {os # centros mais próximos}}",
-    "moreOnMap": "+{count} a mais no mapa",
+    "lastUpdated": "Última atualização: {date}",
     "availableBadge": "Vagas disponíveis",
     "fullBadge": "Lotado",
     "distanceAway": "a {km} km",

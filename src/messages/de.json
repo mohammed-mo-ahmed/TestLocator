@@ -83,7 +83,7 @@
     "loadData": "Testzentren werden geladen…",
     "empty": "Für Ihren Standort wurden noch keine Testzentren gefunden.",
     "showing": "{count, plural, =1 {# nächstgelegenes Zentrum} other {# nächstgelegene Zentren}} werden angezeigt",
-    "moreOnMap": "+{count} weitere auf der Karte",
+    "lastUpdated": "Zuletzt aktualisiert: {date}",
     "availableBadge": "Plätze verfügbar",
     "fullBadge": "Voll",
     "distanceAway": "{km} km entfernt",

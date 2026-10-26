@@ -83,7 +83,7 @@
     "loadData": "正在加载考试中心…",
     "empty": "尚未找到您所在位置的考试中心。",
     "showing": "显示 {count, plural, =1 {# 个最近的中心} other {# 个最近的中心}}",
-    "moreOnMap": "地图上还有 +{count} 个",
+    "lastUpdated": "最后更新：{date}",
     "availableBadge": "有余位",
     "fullBadge": "已满",
     "distanceAway": "距此 {km} 公里",

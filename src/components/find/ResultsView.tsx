@@ -7,7 +7,12 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import TestCenterList from "@/components/find/TestCenterList";
 import ApGuideDialog from "@/components/find/ApGuideDialog";
 import { Spinner } from "@/components/ui/primitives";
-import { fetchAvailability, fetchCenters, fetchTestDates } from "@/lib/data-service";
+import {
+  fetchAvailability,
+  fetchCenters,
+  fetchTestDates,
+  fetchTestLastUpdated,
+} from "@/lib/data-service";
 import { formatKm, haversineKm } from "@/lib/haversine";
 import { cn } from "@/lib/cx";
 import type {
@@ -53,17 +58,22 @@ export default function ResultsView({
   const [loading, setLoading] = useState(true);
   const [activeCode, setActiveCode] = useState<string | null>(null);
   const [testDates, setTestDates] = useState<string[]>(test.dates);
+  const [lastUpdatedAt, setLastUpdatedAt] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
       setLoading(true);
-      const dates = await fetchTestDates(test.code);
-      const centers = await fetchCenters(test.code);
+      const [dates, centers, updatedAt] = await Promise.all([
+        fetchTestDates(test.code),
+        fetchCenters(test.code),
+        fetchTestLastUpdated(test.code),
+      ]);
       const availability = await fetchAvailability(
         test,
-        centers.map((center) => center.code)
+        centers.map((center) => center.code),
+        dates
       );
 
       const enriched = centers
@@ -87,6 +97,7 @@ export default function ResultsView({
 
       if (!cancelled) {
         setTestDates(dates);
+        setLastUpdatedAt(updatedAt);
         setItems(enriched);
         setLoading(false);
         setActiveCode(focusCenter?.code ?? enriched[0]?.code ?? null);
@@ -196,8 +207,13 @@ export default function ResultsView({
 
             <TestCenterList
               items={items.slice(0, NEAREST_SHOWN)}
-              totalOnMap={Math.max(0, items.length - NEAREST_SHOWN)}
               dateLabels={dateLabels}
+              lastUpdated={lastUpdatedAt
+                ? new Intl.DateTimeFormat(locale, {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  }).format(new Date(lastUpdatedAt))
+                : "—"}
               activeCode={activeCode}
               onSelect={handleSelect}
             />

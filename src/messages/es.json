@@ -83,7 +83,7 @@
     "loadData": "Cargando centros de examen…",
     "empty": "Aún no hay centros de examen para tu ubicación.",
     "showing": "Mostrando {count, plural, =1 {# centro más cercano} other {# centros más cercanos}}",
-    "moreOnMap": "+{count} más en el mapa",
+    "lastUpdated": "Última actualización: {date}",
     "availableBadge": "Asientos disponibles",
     "fullBadge": "Completo",
     "distanceAway": "a {km} km",
